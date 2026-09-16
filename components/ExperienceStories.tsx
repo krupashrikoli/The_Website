@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import {
-  EXPERIENCE_POSTS,
   EXPERIENCES_HERO_VIDEO,
 } from "@/lib/constants";
+import { getAllExperiencePosts } from "@/lib/experiences";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { sectionBodyClass, sectionHeadingClass } from "@/lib/section-typography";
@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 
 export function ExperienceStories() {
   const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const posts = getAllExperiencePosts();
 
   useEffect(() => {
     const video = heroVideoRef.current;
@@ -51,7 +52,7 @@ export function ExperienceStories() {
 
       <section className="bg-white py-16 md:py-24">
         <div className="flex w-full flex-col gap-10 sm:gap-16 md:gap-20 lg:gap-24">
-          {EXPERIENCE_POSTS.map((post, index) => {
+          {posts.map((post, index) => {
             const imageOnRight = index % 2 === 1;
 
             return (

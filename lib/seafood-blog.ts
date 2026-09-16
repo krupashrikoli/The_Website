@@ -1,6 +1,6 @@
 /**
  * Seafood dining guide for City Attractions.
- * To add photos later, set `image: "/images/experiences/seafood/restaurant-name.jpg"`
+ * To add photos later, set `image: "/images/experiences/seafood/<restaurant-slug>.jpg"`
  * on any restaurant (and hero via EXPERIENCE_POSTS[].image).
  */
 export type SeafoodRestaurant = {

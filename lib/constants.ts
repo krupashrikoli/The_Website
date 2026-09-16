@@ -778,33 +778,33 @@ export const EXPLORE_SPACES = [
 export const TESTIMONIALS = [
   {
     quote:
-      "From the moment we arrived, every detail felt considered. The rooftop pool at sunset was unforgettable — we didn't want to leave.",
-    name: "Priya",
-    location: "Mumbai",
+      "Very spacious and comfortable rooms, located at the heart of Goa so all major attractions are easily accessible. The views from the rooms are majestic! The rooftop pool is a cherry on the cake! The staff is very supportive! I'd highly recommend choosing Nivaara!",
+    name: "Utkarsh Rally",
+    location: "Google Review",
   },
   {
     quote:
-      "A rare balance of calm and character. The rooms are beautifully appointed, and the staff anticipated our needs before we even asked.",
-    name: "Arjun",
-    location: "New Delhi",
+      "The property was excellent, staff was helpful and cooperative.",
+    name: "Apurva Nimbalkar",
+    location: "Google Review",
   },
   {
     quote:
-      "We came for a quiet weekend in Nerul and found exactly that — thoughtful design, warm hospitality, and Goan flavours that felt genuinely local.",
-    name: "Ananya",
-    location: "Bengaluru",
+      "Had a great stay at Nivaara. The rooms were clean and comfortable, the staff was friendly and helpful, and the overall atmosphere was very relaxing. Everything was well managed, and I felt welcomed throughout my stay. Would definitely recommend it and would love to visit again.",
+    name: "Akshit Dagar",
+    location: "Google Review",
   },
   {
     quote:
-      "The workspace in our room made it easy to mix work and leisure. Nivaãra feels like a retreat without sacrificing comfort or connectivity.",
-    name: "Vikram",
-    location: "Pune",
+      "A calm and thoughtfully designed space that supports relaxation and emotional well-being. The warm hospitality and serene atmosphere make Hotel Nivrrana by GHD Group an excellent choice for a restorative stay.",
+    name: "Samvedana Space",
+    location: "Google Review",
   },
   {
     quote:
-      "Our family stayed for three nights and every morning felt unhurried. The terrace dining and attentive service made it a trip to remember.",
-    name: "Kavita",
-    location: "Hyderabad",
+      "What a property — fantastic vibe and great hospitality. Had an amazing time at Hotel Nivaara. The hotel has a fantastic, energetic vibe and a beautiful pool area. Definitely we will love to visit again.",
+    name: "Sachin Chauhan",
+    location: "Google Review",
   },
 ] as const;
 
