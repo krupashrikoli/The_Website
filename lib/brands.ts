@@ -32,7 +32,7 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
   {
     id: "nivaara",
     name: "Nivaãra",
-    tagline: "Boutique hospitality in North Goa",
+    tagline: "A boutique hotel in Nerul, North Goa",
     status: "live",
     description:
       "A contemporary boutique stay offering comfortable spaces, warm hospitality and easy access to the beaches and attractions of North Goa.",
@@ -56,7 +56,7 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
   {
     id: "samraya",
     name: "Samrāya",
-    tagline: "Crafted Indian hospitality",
+    tagline: "A destination resort — coming soon",
     status: "coming-soon",
     description:
       "An upcoming GHD Hotels brand shaped by Indian artistry, cultural depth and refined hospitality — a new chapter in thoughtful stays.",
@@ -64,10 +64,33 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
       "An upcoming hospitality brand shaped by Indian artistry, cultural depth and refined hospitality.",
     megaMenuDescription:
       "An upcoming GHD Hotels brand celebrating Indian artistry, cultural heritage and sophisticated hospitality. A new chapter is taking shape.",
+    location: {
+      area: "Dodamarg, Maharashtra",
+    },
     route: "/samraya",
     image: "/images/nivaara/nivaara-reception.webp",
     cardImage: "/images/nivaara/samraya-entrance.png",
     imageAlt: "Samrāya by GHD Hotels — coming soon",
+    public: true,
+  },
+  {
+    id: "celestra",
+    name: "Celéstra",
+    tagline: "A luxury hotel in Dodamarg — coming soon",
+    status: "coming-soon",
+    description:
+      "An upcoming luxury hotel by GHD Hotels in Dodamarg, Maharashtra — refined contemporary hospitality in a destination of quiet natural beauty.",
+    shortDescription:
+      "A luxury hotel experience taking shape in Dodamarg.",
+    megaMenuDescription:
+      "Celéstra by GHD Hotels — an upcoming luxury hotel in Dodamarg, Maharashtra. A new chapter in refined hospitality is on the way.",
+    location: {
+      area: "Dodamarg, Maharashtra",
+    },
+    route: "/celestra",
+    image: "/images/nivaara/celestra-luxury-hotel-dodamarg.png",
+    cardImage: "/images/nivaara/celestra-luxury-hotel-dodamarg.png",
+    imageAlt: "Celéstra by GHD Hotels — luxury hotel in Dodamarg, coming soon",
     public: true,
   },
 ] as const;

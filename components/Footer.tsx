@@ -1,7 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactNavLink } from "@/components/contact/ContactNavLink";
-import { GHD_LOGO_GOLD_EMBOSSED, NAV_ITEMS, SITE, SOCIAL_LINKS } from "@/lib/constants";
+import {
+  GHD_LOGO,
+  NAV_ITEMS,
+  NIVAARA_LOGO,
+  SAMRAYA_LOGO,
+  SOCIAL_LINKS,
+} from "@/lib/constants";
 
 type IconProps = {
   className?: string;
@@ -128,26 +134,70 @@ export function Footer() {
           </ul>
         </nav>
 
-        {/* Soft spotlight behind logo so gold mark reads as the footer focus */}
-        <Link
-          href="/"
-          className="relative mt-6 flex w-[min(52vw,11rem)] items-center justify-center sm:mt-8 sm:w-[min(42vw,13rem)] md:w-[15rem]"
-          aria-label={`${SITE.name} home`}
-        >
+        {/* Soft spotlight behind logos so gold marks read as the footer focus */}
+        <div className="relative mt-6 flex max-w-full items-center justify-center sm:mt-8">
           <span
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[140%] w-[130%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(250,247,240,0.95)_0%,rgba(250,247,240,0.72)_45%,transparent_72%)]"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[170%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(250,247,240,0.95)_0%,rgba(250,247,240,0.72)_45%,transparent_72%)]"
             aria-hidden
           />
-          <Image
-            src={GHD_LOGO_GOLD_EMBOSSED}
-            alt={SITE.name}
-            width={1160}
-            height={420}
-            className="relative z-10 h-auto w-full object-contain object-center drop-shadow-[0_6px_18px_rgba(84,49,25,0.22)]"
-            sizes="(max-width: 768px) 176px, 240px"
-            priority
-          />
-        </Link>
+
+          <div className="relative z-10 flex items-center justify-center gap-6 sm:gap-10 md:gap-14">
+            <Link
+              href="/"
+              className="w-[min(40vw,9.5rem)] shrink-0 sm:w-[11.5rem] md:w-[13.5rem]"
+              aria-label="GHD Hotels home"
+            >
+              <Image
+                src={GHD_LOGO}
+                alt="GHD Hotels"
+                width={1160}
+                height={420}
+                className="h-auto w-full object-contain object-center drop-shadow-[0_6px_18px_rgba(84,49,25,0.22)]"
+                sizes="(max-width: 640px) 40vw, 216px"
+                priority
+              />
+            </Link>
+
+            <span
+              className="hidden h-10 w-px shrink-0 bg-[#C6A86B]/35 sm:block sm:h-12 md:h-14"
+              aria-hidden
+            />
+
+            <div
+              className="flex items-center gap-3 sm:gap-4 md:gap-5"
+              aria-label="GHD Hotels brands"
+            >
+              <Link
+                href="/nivaara"
+                className="w-[min(18vw,3.75rem)] shrink-0 opacity-65 transition-opacity duration-300 hover:opacity-90 sm:w-[4.75rem] md:w-[5.25rem]"
+                aria-label="Nivaãra by GHD Hotels"
+              >
+                <Image
+                  src={NIVAARA_LOGO}
+                  alt="Nivaãra by GHD Hotels"
+                  width={736}
+                  height={498}
+                  className="h-auto w-full object-contain object-center"
+                  sizes="(max-width: 640px) 18vw, 84px"
+                />
+              </Link>
+
+              <div
+                className="w-[min(18vw,3.75rem)] shrink-0 opacity-65 sm:w-[4.75rem] md:w-[5.25rem]"
+                aria-label="Samrāya by GHD Hotels"
+              >
+                <Image
+                  src={SAMRAYA_LOGO}
+                  alt="Samrāya by GHD Hotels"
+                  width={3120}
+                  height={2244}
+                  className="h-auto w-full object-contain object-center"
+                  sizes="(max-width: 640px) 18vw, 84px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
         <ul className="mt-5 flex items-center justify-center gap-5 sm:mt-6 sm:gap-6">
           {SOCIAL_LINKS.map((social) => {

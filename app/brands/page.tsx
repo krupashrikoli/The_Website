@@ -12,7 +12,7 @@ import { BRANDS_PAGE } from "@/lib/corporate-content";
 export const metadata: Metadata = {
   title: "Our Brands | GHD Hotels",
   description:
-    "Explore the GHD Hotels portfolio — Nivaãra in North Goa and Samrāya, coming soon — distinctive hotels and destinations across India.",
+    "Explore the GHD Hotels portfolio — Nivaãra in North Goa, and Samrāya and Celéstra in Dodamarg, coming soon — distinctive hotels and destinations across India.",
 };
 
 export default function BrandsPage() {

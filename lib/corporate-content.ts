@@ -21,7 +21,7 @@ export const CORPORATE_NAV = [
 ] as const;
 
 export const CORPORATE_HERO = {
-  video: "/images/nivaara/hero-section.mp4",
+  video: "/images/nivaara/ghd-hotels-hero.mp4",
   poster: "/images/nivaara/goa-beach-aerial.jpg",
   imageAlt: "GHD Hotels hospitality",
 } as const;
@@ -51,6 +51,10 @@ export const BRAND_SHOWCASE = {
   samraya: {
     image: "/images/nivaara/samraya-entrance.png",
     imageAlt: "Samrāya by GHD Hotels — coming soon",
+  },
+  celestra: {
+    image: "/images/nivaara/celestra-luxury-hotel-dodamarg.png",
+    imageAlt: "Celéstra by GHD Hotels — luxury hotel in Dodamarg, coming soon",
   },
 } as const;
 
@@ -246,7 +250,7 @@ export const ABOUT_PAGE = {
   subheading: "Where Every Stay Becomes an Experience",
   body: [
     "GHD Hotels is a hospitality group rooted in Goa, established in 2026, and building a growing portfolio of distinctive hotels and destinations across India.",
-    "From Nivaãra in Nerul, Goa to Samrāya in Dodamarg, Maharashtra, each GHD property is created with its own character, bringing together thoughtful design, genuine hospitality, and experiences shaped by the destination.",
+    "From Nivaãra in Nerul, Goa to Samrāya and Celéstra in Dodamarg, Maharashtra, each GHD property is created with its own character, bringing together thoughtful design, genuine hospitality, and experiences shaped by the destination.",
     "We are building a diverse collection of places to stay, gather, discover, and belong.",
   ],
   heroImage: "/images/nivaara/samraya-resort-view.png",
