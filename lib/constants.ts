@@ -716,9 +716,9 @@ export const SAMRAYA_LOGO = "/logos/samraya-logo.png";
 export const GHD_LOGO_WHITE = "/logos/ghd-hotels-logo-white.png";
 
 export const GHD_LOGO_GOLD = "/logos/ghd-hotels-logo-gold.png";
-export const GHD_LOGO_GOLD_EMBOSSED = "/logos/ghd-hotels-logo-gold-embossed.png";
+export const GHD_HOTELS_MAIN_LOGO = "/logos/GHDHotelsMainLogo.png";
 /** Primary GHD Hotels logo for header, footer, and on-page use. */
-export const GHD_LOGO = GHD_LOGO_GOLD_EMBOSSED;
+export const GHD_LOGO = GHD_HOTELS_MAIN_LOGO;
 /** Tab / favicon only — wordmark without monogram. */
 export const GHD_FAVICON = "/logos/ghd-hotels-favicon-gold.png";
 
