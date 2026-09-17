@@ -18,9 +18,12 @@ import {
 } from "@/components/corporate/HomeSections";
 
 export const metadata: Metadata = {
-  title: "GHD Hotels | Thoughtful Stays. Genuine Hospitality.",
+  title: {
+    absolute:
+      "Hotels in North Goa | Best Boutique Hotel in Nerul | GHD Hotels",
+  },
   description:
-    "GHD Hotels is a growing hospitality company with distinctive brands including Nivaãra in North Goa and Samraya — coming soon. Stays that feel like home. Experiences that stay with you.",
+    "Looking for hotels in North Goa? Book Nivaãra by GHD Hotels in Nerul — boutique stay near Coco Beach, Candolim & Calangute with rooftop pool and spacious studio rooms.",
 };
 
 export default function HomePage() {

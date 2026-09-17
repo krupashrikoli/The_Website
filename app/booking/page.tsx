@@ -5,9 +5,9 @@ import { BookingContent } from "@/components/booking/BookingContent";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Choose Your Room | Nivaãra by GHD Hotels",
+  title: "Book Hotel Rooms in Nerul, North Goa | Nivaãra",
   description:
-    "Select your room category at Nivaãra by GHD Hotels in Nerul, North Goa and continue to complete your stay.",
+    "Book hotel rooms in Nerul, North Goa at Nivaãra by GHD Hotels. Choose studio and luxury rooms near Coco Beach, Candolim & Calangute.",
 };
 
 export default function BookingPage() {

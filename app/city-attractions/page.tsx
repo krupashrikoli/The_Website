@@ -5,9 +5,9 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Things to Do Near Nerul, Goa | Nivaãra by GHD Hotels",
+  title: "Best Places to Visit Near Nerul Goa | Things to Do North Goa",
   description:
-    "Discover North Goa's best attractions near Nivaãra by GHD Hotels in Nerul — heritage landmarks, coastal adventures, and the beaches around Coco Beach, all within easy reach.",
+    "Best places to visit near Nerul, North Goa — beaches, seafood, and attractions around Candolim, Calangute, Baga & Coco Beach, close to Nivaãra by GHD Hotels.",
 };
 
 export default function ExperiencesPage() {

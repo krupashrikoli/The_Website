@@ -639,7 +639,24 @@ export const SEO_KEYWORDS = [
   "Goa travel stay",
   "North Goa travel accommodation",
   "book North Goa hotel",
-  "best stay in North Goa"
+  "best stay in North Goa",
+  "Goa best destination",
+  "best destination in Goa",
+  "best destination North Goa",
+  "best tourist destination Goa",
+  "North Goa destination",
+  "places to visit in North Goa",
+  "places to visit near Nerul Goa",
+  "best beaches North Goa",
+  "best beaches near Nerul",
+  "things to do in North Goa",
+  "things to do near Nerul Goa",
+  "where to stay in North Goa",
+  "where to stay in Nerul Goa",
+  "best place to stay North Goa",
+  "hotels near Candolim Beach",
+  "hotels near Calangute Beach",
+  "hotels near Baga Beach",
 ];
 
 export const NIVAARA_CONTACT = {

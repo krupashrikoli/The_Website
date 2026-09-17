@@ -60,16 +60,18 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "GHD Hotels | Thoughtful Stays. Genuine Hospitality.",
+    default:
+      "Hotels in North Goa | Best Boutique Hotel in Nerul | GHD Hotels",
     template: "%s | GHD Hotels",
   },
   description:
-    "GHD Hotels is a growing hospitality company with distinctive brands including Nivaãra in North Goa and Samraya — coming soon.",
+    "Book hotels in North Goa with GHD Hotels. Stay at Nivaãra in Nerul — near Coco Beach, Candolim & Calangute. Boutique rooms, rooftop pool, and easy access to Goa's best beaches.",
   keywords: SEO_KEYWORDS,
   openGraph: {
-    title: "GHD Hotels | Thoughtful Stays. Genuine Hospitality.",
+    title:
+      "Hotels in North Goa | Best Boutique Hotel in Nerul | GHD Hotels",
     description:
-      "A growing collection of distinctive hospitality brands — including Nivaãra in North Goa and Samraya, coming soon.",
+      "Boutique hotels in North Goa — Nivaãra in Nerul near Coco Beach, Candolim & Calangute. Book your Goa stay with GHD Hotels.",
     type: "website",
   },
   icons: {

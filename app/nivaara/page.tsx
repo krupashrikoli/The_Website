@@ -13,9 +13,12 @@ import { BookingCta } from "@/components/BookingCta";
 import { FAMILY_AT_BEACH_VIDEO } from "@/lib/constants";
 
 export const metadata: Metadata = {
-  title: "Nivaãra by GHD Hotels | Luxury Boutique Hotel in Nerul, North Goa",
+  title: {
+    absolute:
+      "Boutique Hotel in Nerul, North Goa | Near Candolim & Coco Beach | Nivaãra",
+  },
   description:
-    "Nivaãra by GHD Hotels is a boutique luxury hotel in Nerul, North Goa — minutes from Coco Beach. Rooftop pool, spacious studio rooms, and warm Goan hospitality.",
+    "Boutique hotel in Nerul, North Goa — minutes from Coco Beach, Candolim & Calangute. Rooftop pool, spacious studio rooms, and warm Goan hospitality at Nivaãra by GHD Hotels.",
 };
 
 export default function NivaaraPage() {
