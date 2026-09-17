@@ -33,10 +33,10 @@ export function missingMailHint(): string {
 
   return [
     "Email is not configured for this deployment.",
-    "On Vercel, set RESEND_API_KEY (recommended) or CONTACT_FORM_FALLBACK=formsubmit.",
-    "Create a Resend key at https://resend.com, then redeploy.",
+    "Set SMTP_PASS with SMTP_PORT=465 and SMTP_SECURE=true (SSL), or set RESEND_API_KEY.",
+    "Avoid CONTACT_FORM_FALLBACK=formsubmit — FormSubmit is often blocked by Cloudflare.",
     "",
-    `SMTP (non-Vercel hosts): ${smtpHint}`,
+    `SMTP: ${smtpHint}`,
   ].join("\n");
 }
 
@@ -104,6 +104,18 @@ async function sendMailViaFormSubmit(mail: AppMail): Promise<void> {
   });
 
   const raw = await response.text();
+  const contentType = response.headers.get("content-type") || "";
+
+  // Cloudflare challenge pages look like success HTML but are not the mail API
+  if (
+    /just a moment|cf-browser-verification|cloudflare/i.test(raw) ||
+    (contentType.includes("text/html") && raw.trim().startsWith("<!"))
+  ) {
+    throw new Error(
+      "FormSubmit blocked by Cloudflare challenge. Use SMTP (port 465 SSL) or RESEND_API_KEY instead.",
+    );
+  }
+
   let parsed: { success?: string | boolean; message?: string } = {};
   try {
     parsed = JSON.parse(raw) as typeof parsed;
@@ -129,10 +141,12 @@ async function sendMailViaFormSubmit(mail: AppMail): Promise<void> {
 
 function shouldUseFormSubmitFallback(): boolean {
   const explicit = process.env.CONTACT_FORM_FALLBACK?.trim().toLowerCase();
+  if (explicit === "off" || explicit === "false" || explicit === "0" || explicit === "smtp") {
+    return false;
+  }
   if (explicit === "formsubmit") return true;
-  if (explicit === "off" || explicit === "false" || explicit === "0") return false;
-  // Vercel blocks outbound SMTP — use HTTPS fallback automatically
-  return Boolean(process.env.VERCEL);
+  // Vercel blocks outbound SMTP — HTTPS fallback only when SMTP is not configured
+  return Boolean(process.env.VERCEL) && !isSmtpPassConfigured();
 }
 
 export async function sendAppMail(mail: AppMail): Promise<void> {
@@ -141,16 +155,10 @@ export async function sendAppMail(mail: AppMail): Promise<void> {
     return;
   }
 
-  const preferFormSubmit =
-    process.env.CONTACT_FORM_FALLBACK?.trim().toLowerCase() === "formsubmit";
-
-  if (preferFormSubmit) {
-    await sendMailViaFormSubmit(mail);
-    return;
-  }
-
   let smtpError: unknown;
 
+  // Prefer SMTP over SSL (port 465) whenever credentials are configured.
+  // Do not skip SMTP for CONTACT_FORM_FALLBACK=formsubmit — FormSubmit is often blocked.
   if (isSmtpPassConfigured()) {
     try {
       const payload: SendMailOptions = {

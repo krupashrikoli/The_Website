@@ -159,10 +159,12 @@ function connectionErrorMessage(cfg: SmtpConfig, err: unknown): string {
 }
 
 export function createSmtpTransport(cfg: SmtpConfig) {
+  const useSsl = cfg.secure || cfg.port === 465;
   return nodemailer.createTransport({
     host: cfg.host,
     port: cfg.port,
-    secure: cfg.secure,
+    // Port 465 = implicit SSL/TLS from connect
+    secure: useSsl,
     ...(cfg.authMethod ? { authMethod: cfg.authMethod } : {}),
     connectionTimeout: SMTP_CONNECT_MS,
     greetingTimeout: SMTP_CONNECT_MS,
@@ -173,8 +175,10 @@ export function createSmtpTransport(cfg: SmtpConfig) {
     },
     tls: {
       servername: cfg.tlsServername,
+      // Enforce TLS for SMTPS
+      minVersion: "TLSv1.2",
     },
-    ...(cfg.port === 587 && !cfg.secure ? { requireTLS: true } : {}),
+    ...(cfg.port === 587 && !useSsl ? { requireTLS: true } : {}),
   });
 }
 
@@ -216,11 +220,13 @@ function smtpAuthVariants(base: SmtpConfig): SmtpConfig[] {
   }
 
   push({ ...base, authMethod: "LOGIN" });
+  push({ ...base, authMethod: "PLAIN" });
 
   const at = base.user.indexOf("@");
   if (at > 0) {
     const local = base.user.slice(0, at);
     push({ ...base, user: local, authMethod: "LOGIN" });
+    push({ ...base, user: local, authMethod: "PLAIN" });
   }
 
   return out;
