@@ -3,8 +3,11 @@ import type { SendMailOptions } from "nodemailer";
 import { getSmtpPasswordFromEnv } from "@/lib/mailEnv";
 
 const MAIL_CANONICAL_HOST = "mail.ghdhotels.in";
-/** Reachable cPanel/provider SMTP host when mail.* DNS points at the public website CDN. */
-const DEFAULT_SMTP_CONNECT_HOST = "mail.mysecurecloudhost.com";
+/**
+ * Reachable cPanel SMTP host when mail.ghdhotels.in CNAME points at the website CDN.
+ * Resolves to the account server (cert includes mail.ghdhotels.in).
+ */
+const DEFAULT_SMTP_CONNECT_HOST = "d16211.bom1.stableserver.net";
 
 export type SmtpConfig = {
   host: string;
@@ -63,6 +66,7 @@ function resolveSmtpConnectHost(requestedHost: string): {
 } {
   const tlsServername =
     normalizeCredential(process.env.SMTP_TLS_SERVERNAME || "") ||
+    requestedHost ||
     MAIL_CANONICAL_HOST;
 
   const connectOverride = normalizeCredential(
@@ -72,11 +76,13 @@ function resolveSmtpConnectHost(requestedHost: string): {
     return { connectHost: connectOverride, tlsServername };
   }
 
-  if (requestedHost === MAIL_CANONICAL_HOST) {
-    const fallback =
-      normalizeCredential(process.env.SMTP_HOST_FALLBACK || "") ||
-      DEFAULT_SMTP_CONNECT_HOST;
-    return { connectHost: fallback, tlsServername };
+  // mail.ghdhotels.in often CNAMEs to the website CDN (no SMTP). Fall back to
+  // the provider SMTP hostname for TCP while keeping branded TLS SNI.
+  if (requestedHost.toLowerCase() === MAIL_CANONICAL_HOST) {
+    return {
+      connectHost: DEFAULT_SMTP_CONNECT_HOST,
+      tlsServername,
+    };
   }
 
   return { connectHost: requestedHost, tlsServername };
@@ -256,24 +262,17 @@ async function trySendWithVariants(
 
 export async function sendMailViaSmtp(mail: SendMailOptions): Promise<void> {
   const base = getSmtpConfigFromEnv();
-  const requestedHost = normalizeCredential(
-    process.env.SMTP_HOST || MAIL_CANONICAL_HOST,
-  );
   const connectOverride = normalizeCredential(
     process.env.SMTP_CONNECT_HOST || "",
   );
 
-  // Never TCP-connect to mail.ghdhotels.in while it CNAMEs to the website CDN.
+  // Prefer explicit/default connect host. Do not TCP to mail.ghdhotels.in while
+  // it still CNAMEs to the website CDN (SMTP timeout on those IPs).
   const connectHosts = Array.from(
     new Set(
-      [
-        connectOverride,
-        base.host !== MAIL_CANONICAL_HOST ? base.host : "",
-        requestedHost !== MAIL_CANONICAL_HOST ? requestedHost : "",
-        !connectOverride && requestedHost === MAIL_CANONICAL_HOST
-          ? DEFAULT_SMTP_CONNECT_HOST
-          : "",
-      ].filter(Boolean),
+      [connectOverride, base.host, DEFAULT_SMTP_CONNECT_HOST]
+        .filter(Boolean)
+        .filter((h) => h.toLowerCase() !== MAIL_CANONICAL_HOST),
     ),
   ).slice(0, 3);
 
@@ -282,10 +281,8 @@ export async function sendMailViaSmtp(mail: SendMailOptions): Promise<void> {
   for (const connectHost of connectHosts) {
     const tlsServername =
       normalizeCredential(process.env.SMTP_TLS_SERVERNAME || "") ||
-      (connectHost.includes("mysecurecloudhost.com") ||
-      connectHost.includes("stableserver.net")
-        ? connectHost
-        : base.tlsServername || connectHost);
+      base.tlsServername ||
+      connectHost;
 
     const candidate: SmtpConfig = {
       ...base,

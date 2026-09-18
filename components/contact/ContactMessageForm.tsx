@@ -8,9 +8,6 @@ import {
   type FormEvent,
 } from "react";
 import {
-  formatContactFetchFailure,
-  formatContactSubmitFailure,
-  mailApiHtmlError,
   parseContactResponseJson,
 } from "@/lib/contactFormDiagnostics";
 import {
@@ -25,6 +22,8 @@ import {
 } from "@/lib/contactFieldValidation";
 import { sectionBodyClass } from "@/lib/section-typography";
 import { cn } from "@/lib/utils";
+
+const SEND_ERROR_MESSAGE = "Error in sending.";
 
 export type ContactEnquirySource = "ghd" | "nivaara";
 
@@ -228,20 +227,18 @@ export function ContactMessageForm({
         ({} as { ok?: boolean; error?: string; hint?: string });
 
       if (
-        !data.error &&
-        (raw.trim().startsWith("<!") || contentType.includes("text/html"))
+        !response.ok ||
+        data.ok !== true ||
+        raw.trim().startsWith("<!") ||
+        contentType.includes("text/html")
       ) {
-        throw new Error(mailApiHtmlError(url));
-      }
-
-      if (!response.ok || data.ok !== true) {
-        throw new Error(
-          formatContactSubmitFailure({
-            requestUrl: url,
-            response,
-            rawBody: raw,
-          }),
-        );
+        console.error("Contact form send failed:", {
+          status: response.status,
+          error: data.error,
+        });
+        setErrorMessage(SEND_ERROR_MESSAGE);
+        setStatus("error");
+        return;
       }
 
       setForm({
@@ -255,21 +252,8 @@ export function ContactMessageForm({
       setShowErrors(false);
       setStatus("success");
     } catch (error) {
-      const isNetwork =
-        error instanceof TypeError ||
-        (error instanceof DOMException && error.name === "AbortError") ||
-        (error instanceof Error &&
-          /failed to fetch|networkerror|load failed|aborted/i.test(
-            error.message,
-          ));
-
-      setErrorMessage(
-        isNetwork
-          ? formatContactFetchFailure(url, error)
-          : error instanceof Error
-            ? error.message
-            : "Failed to send message.",
-      );
+      console.error("Contact form send failed:", error);
+      setErrorMessage(SEND_ERROR_MESSAGE);
       setStatus("error");
     } finally {
       window.clearTimeout(timeoutId);
@@ -451,12 +435,9 @@ export function ContactMessageForm({
 
           {status === "error" && errorMessage ? (
             <div className="border border-red-500/30 px-4 py-3 text-left">
-              <p className="mb-2 font-body text-sm font-medium text-red-600">
-                Could not send your message. Details:
-              </p>
-              <pre className="max-h-64 overflow-y-auto whitespace-pre-wrap break-words font-mono text-xs leading-relaxed text-red-600/90">
+              <p className="font-body text-sm font-medium text-red-600">
                 {errorMessage}
-              </pre>
+              </p>
             </div>
           ) : null}
 

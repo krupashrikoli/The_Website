@@ -22,7 +22,7 @@ const SOURCE_META: Record<
   nivaara: {
     label: "Nivaãra by GHD Hotels",
     subjectPrefix: "[Nivaãra]",
-    defaultRecipient: "info.nerul@ghdhotels.in",
+    defaultRecipient: "website@ghdhotels.in",
   },
 };
 
