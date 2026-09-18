@@ -3,7 +3,7 @@ import Link from "next/link";
 import { RoomGallery } from "@/components/RoomGallery";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ReserveButton } from "@/components/ui/ReserveButton";
-import { ROYAL_STUDIO } from "@/lib/constants";
+import { AXISROOMS_BOOKING_URL, ROYAL_STUDIO } from "@/lib/constants";
 import type { RoomCategory } from "@/lib/rooms";
 import { sectionBodyClass, sectionHeadingClass } from "@/lib/section-typography";
 
@@ -70,7 +70,11 @@ export function RoomDetailContent({ room }: { room: RoomCategory }) {
           </p>
 
           <div className="mt-8">
-            <ReserveButton variant="gold" label="Reserve Now" />
+            <ReserveButton
+              variant="gold"
+              label="Reserve Now"
+              href={AXISROOMS_BOOKING_URL}
+            />
           </div>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
@@ -146,7 +150,11 @@ export function RoomDetailContent({ room }: { room: RoomCategory }) {
             </ul>
 
             <div className="mt-10">
-              <ReserveButton variant="gold" label="Reserve Now" />
+              <ReserveButton
+                variant="gold"
+                label="Reserve Now"
+                href={AXISROOMS_BOOKING_URL}
+              />
             </div>
           </div>
         </div>
