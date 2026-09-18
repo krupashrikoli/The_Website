@@ -8,9 +8,10 @@ import {
 } from "@/lib/constants";
 
 /**
- * Official Nivaãra AxisRooms booking engine URL (from AxisRooms support, Jul 2026).
+ * Official Nivaãra AxisRooms booking engine URL.
+ * https://be.axisrooms.com/search?bookingEngineId=5044
  *
- * Query / form fields:
+ * Search / form fields (when pre-filling dates & occupancy):
  * - paxInfo — pipe-delimited occupancy per room (e.g. `2|0||` = 2 adults, 0 children)
  * - fromdate, todate — DD/MM/YYYY
  * - rooms, productId, bookingEngineId, allHotels, newBe

@@ -110,8 +110,8 @@ export function getSmtpConfigFromEnv(): SmtpConfig {
   };
 }
 
-const SMTP_CONNECT_MS = 5_000;
-const SMTP_ATTEMPT_MS = 8_000;
+const SMTP_CONNECT_MS = 20_000;
+const SMTP_ATTEMPT_MS = 25_000;
 
 function errCode(err: unknown): string {
   if (err && typeof err === "object" && "code" in err) {
@@ -256,17 +256,23 @@ async function trySendWithVariants(
 
 export async function sendMailViaSmtp(mail: SendMailOptions): Promise<void> {
   const base = getSmtpConfigFromEnv();
+  const requestedHost = normalizeCredential(
+    process.env.SMTP_HOST || MAIL_CANONICAL_HOST,
+  );
+  const connectOverride = normalizeCredential(
+    process.env.SMTP_CONNECT_HOST || "",
+  );
 
+  // Never TCP-connect to mail.ghdhotels.in while it CNAMEs to the website CDN.
   const connectHosts = Array.from(
     new Set(
       [
-        normalizeCredential(process.env.SMTP_CONNECT_HOST || ""),
-        base.host !== DEFAULT_SMTP_CONNECT_HOST &&
-        base.host !== MAIL_CANONICAL_HOST
-          ? base.host
+        connectOverride,
+        base.host !== MAIL_CANONICAL_HOST ? base.host : "",
+        requestedHost !== MAIL_CANONICAL_HOST ? requestedHost : "",
+        !connectOverride && requestedHost === MAIL_CANONICAL_HOST
+          ? DEFAULT_SMTP_CONNECT_HOST
           : "",
-        "mail.mysecurecloudhost.com",
-        DEFAULT_SMTP_CONNECT_HOST,
       ].filter(Boolean),
     ),
   ).slice(0, 3);
@@ -275,21 +281,42 @@ export async function sendMailViaSmtp(mail: SendMailOptions): Promise<void> {
 
   for (const connectHost of connectHosts) {
     const tlsServername =
-      connectHost.includes("mysecurecloudhost.com") ||
+      normalizeCredential(process.env.SMTP_TLS_SERVERNAME || "") ||
+      (connectHost.includes("mysecurecloudhost.com") ||
       connectHost.includes("stableserver.net")
         ? connectHost
-        : base.tlsServername;
+        : base.tlsServername || connectHost);
 
     const candidate: SmtpConfig = {
       ...base,
       host: connectHost,
       tlsServername,
+      // Keep SSL/TLS when port 465 is configured
+      secure: base.port === 465 ? true : base.secure,
     };
 
     try {
       const variants = smtpAuthVariants(candidate);
-      if (await trySendWithVariants(variants, mail)) return;
+      try {
+        if (await trySendWithVariants(variants, mail)) return;
+      } catch (authOrSendError) {
+        // Auth failed on 465 — still try STARTTLS 587 before giving up on this host
+        if (
+          candidate.port === 465 &&
+          candidate.secure &&
+          isAuth535(authOrSendError)
+        ) {
+          const alt: SmtpConfig = {
+            ...candidate,
+            port: 587,
+            secure: false,
+          };
+          if (await trySendWithVariants(smtpAuthVariants(alt), mail)) return;
+        }
+        throw authOrSendError;
+      }
 
+      // Connection-style false return: try STARTTLS
       if (candidate.port === 465 && candidate.secure) {
         const alt: SmtpConfig = {
           ...candidate,
@@ -300,16 +327,20 @@ export async function sendMailViaSmtp(mail: SendMailOptions): Promise<void> {
       }
     } catch (e) {
       lastError = e;
-      if (isConnectionError(e) || /Cannot reach mail server/i.test(String(e))) {
-        continue;
-      }
       if (isAuth535(e)) {
+        // Same mailbox password will fail on every host — surface immediately
+        throw e instanceof Error ? e : new Error(String(e));
+      }
+      if (isConnectionError(e) || /Cannot reach mail server/i.test(String(e))) {
         continue;
       }
       throw e;
     }
   }
 
-  if (lastError) throw lastError instanceof Error ? lastError : new Error(String(lastError));
+  if (lastError) {
+    // Prefer a clear auth error over a later connection timeout from a bad host
+    throw lastError instanceof Error ? lastError : new Error(String(lastError));
+  }
   throw new Error("SMTP authentication failed after all attempts");
 }

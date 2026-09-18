@@ -17,14 +17,13 @@ export const CORPORATE_SEARCH_DESTINATIONS = [
   },
 ] as const;
 
-/** External AxisRooms booking engine — official link from AxisRooms support (Jul 2026) */
+/** External AxisRooms booking engine — Nivaãra Book Now */
 export const AXISROOMS_BOOKING_URL =
-  "https://app.axisrooms.com/beV2/searchHotel.html?paxInfo=2%7C0%7C%7C&allHotels=true&newBe=true&productId=214632&bookingEngineId=5012&rooms=1&searchId=-1&searchNumber=1";
+  "https://be.axisrooms.com/search?bookingEngineId=5044";
 
 export const AXISROOMS_PRODUCT_ID = "214632";
-export const AXISROOMS_BOOKING_ENGINE_ID = "5012";
-export const AXISROOMS_SEARCH_BASE_URL =
-  "https://app.axisrooms.com/beV2/searchHotel.html";
+export const AXISROOMS_BOOKING_ENGINE_ID = "5044";
+export const AXISROOMS_SEARCH_BASE_URL = "https://be.axisrooms.com/search";
 
 export const ROOM_OPTIONS = [1, 2, 3, 4, 5] as const;
 

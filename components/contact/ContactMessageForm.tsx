@@ -1,14 +1,32 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { usePathname } from "next/navigation";
+import {
+  useState,
+  type ChangeEvent,
+  type FocusEvent,
+  type FormEvent,
+} from "react";
 import {
   formatContactFetchFailure,
   formatContactSubmitFailure,
   mailApiHtmlError,
   parseContactResponseJson,
 } from "@/lib/contactFormDiagnostics";
+import {
+  DEFAULT_INDIAN_PHONE,
+  emailFormatHint,
+  indianMobileDigits,
+  indianPhoneHint,
+  isValidEmailFormat,
+  isValidIndianMobile,
+  normalizeIndianPhoneInput,
+  toE164IndianMobile,
+} from "@/lib/contactFieldValidation";
 import { sectionBodyClass } from "@/lib/section-typography";
 import { cn } from "@/lib/utils";
+
+export type ContactEnquirySource = "ghd" | "nivaara";
 
 type FormState = {
   name: string;
@@ -17,16 +35,66 @@ type FormState = {
   message: string;
 };
 
+type FieldKey = "name" | "email" | "phone" | "message";
+
 const fieldClass =
-  "w-full border border-border bg-white px-3 py-2.5 font-body text-sm font-light text-charcoal outline-none transition-colors placeholder:text-grey/70 focus:border-charcoal disabled:opacity-60";
+  "w-full border bg-white px-3 py-2.5 font-body text-sm font-light text-charcoal outline-none transition-colors placeholder:text-grey/70 disabled:opacity-60";
+
+const fieldOkClass = "border-border focus:border-charcoal";
+const fieldErrorClass =
+  "border-red-500 bg-red-50/40 text-charcoal focus:border-red-600 focus:ring-1 focus:ring-red-500";
 
 const idPrefixDefault = "contact";
+
+const CORPORATE_ROUTES = new Set([
+  "/",
+  "/about",
+  "/brands",
+  "/culture",
+  "/careers",
+  "/contact",
+  "/leadership",
+]);
+
+function resolveSource(
+  explicit: ContactEnquirySource | undefined,
+  pathname: string,
+): ContactEnquirySource {
+  if (explicit) return explicit;
+  return CORPORATE_ROUTES.has(pathname) ? "ghd" : "nivaara";
+}
+
+function emailErrorFor(value: string): string | undefined {
+  const trimmed = value.trim();
+  if (!trimmed) return "Email is required.";
+  if (!isValidEmailFormat(trimmed)) return emailFormatHint();
+  return undefined;
+}
+
+function phoneErrorFor(value: string): string | undefined {
+  const digits = indianMobileDigits(value);
+  if (!digits) return "Phone number is required.";
+  if (!isValidIndianMobile(value)) return indianPhoneHint();
+  return undefined;
+}
+
+function nameErrorFor(value: string): string | undefined {
+  if (!value.trim()) return "Full name is required.";
+  return undefined;
+}
+
+function messageErrorFor(value: string): string | undefined {
+  if (!value.trim()) return "Message is required.";
+  return undefined;
+}
 
 type ContactMessageFormProps = {
   idPrefix?: string;
   className?: string;
   title?: string;
   description?: string;
+  /** Which site this form belongs to. Defaults from the current route. */
+  source?: ContactEnquirySource;
 };
 
 export function ContactMessageForm({
@@ -34,34 +102,98 @@ export function ContactMessageForm({
   className,
   title = "Send Us a Message",
   description = "For enquiries, partnerships, or investment discussions.",
+  source,
 }: ContactMessageFormProps) {
+  const pathname = usePathname() || "/";
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
-    phone: "",
+    phone: DEFAULT_INDIAN_PHONE,
     message: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
   const [errorMessage, setErrorMessage] = useState("");
+  const [touched, setTouched] = useState<Partial<Record<FieldKey, boolean>>>(
+    {},
+  );
+  const [fieldErrors, setFieldErrors] = useState<
+    Partial<Record<FieldKey, string>>
+  >({});
+  const [showErrors, setShowErrors] = useState(false);
 
+  const emailOk = isValidEmailFormat(form.email);
+  const phoneOk = isValidIndianMobile(form.phone);
   const formReady = Boolean(
-    form.name.trim() && form.email.trim() && form.message.trim(),
+    form.name.trim() && emailOk && phoneOk && form.message.trim(),
   );
   const canSend = formReady && status !== "loading";
+
+  function errorVisible(field: FieldKey): boolean {
+    return Boolean(fieldErrors[field] && (showErrors || touched[field]));
+  }
+
+  function syncFieldError(field: FieldKey, value: string) {
+    let message: string | undefined;
+    if (field === "email") message = emailErrorFor(value);
+    else if (field === "phone") message = phoneErrorFor(value);
+    else if (field === "name") message = nameErrorFor(value);
+    else if (field === "message") message = messageErrorFor(value);
+
+    setFieldErrors((prev) => {
+      if (prev[field] === message) return prev;
+      return { ...prev, [field]: message };
+    });
+  }
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
-    setForm((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+    const { name, value } = event.target;
+    const field = name as FieldKey;
+
+    let nextValue = value;
+    if (field === "phone") {
+      nextValue = normalizeIndianPhoneInput(value);
+    }
+
+    setForm((prev) => ({ ...prev, [field]: nextValue }));
+
+    if (showErrors || touched[field]) {
+      syncFieldError(field, nextValue);
+    }
+  }
+
+  function handleBlur(
+    event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    const field = event.target.name as FieldKey;
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    syncFieldError(field, form[field]);
+  }
+
+  function validateAllFields(): boolean {
+    const next: Partial<Record<FieldKey, string>> = {
+      name: nameErrorFor(form.name),
+      email: emailErrorFor(form.email),
+      phone: phoneErrorFor(form.phone),
+      message: messageErrorFor(form.message),
+    };
+    (Object.keys(next) as FieldKey[]).forEach((key) => {
+      if (!next[key]) delete next[key];
+    });
+    setFieldErrors(next);
+    setShowErrors(true);
+    setTouched({ name: true, email: true, phone: true, message: true });
+    return Object.keys(next).length === 0;
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      setErrorMessage("Please fill in all required fields.");
+    if (!validateAllFields()) {
+      setErrorMessage("Please correct the highlighted fields.");
       setStatus("error");
       return;
     }
@@ -70,6 +202,7 @@ export function ContactMessageForm({
     setErrorMessage("");
 
     const url = "/api/contact";
+    const enquirySource = resolveSource(source, pathname);
     const controller = new AbortController();
     const timeoutId = window.setTimeout(() => controller.abort(), 30_000);
 
@@ -79,9 +212,11 @@ export function ContactMessageForm({
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           name: form.name.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
+          email: form.email.trim().toLowerCase(),
+          phone: toE164IndianMobile(form.phone),
           message: form.message.trim(),
+          source: enquirySource,
+          page: pathname,
         }),
         signal: controller.signal,
       });
@@ -109,7 +244,15 @@ export function ContactMessageForm({
         );
       }
 
-      setForm({ name: "", email: "", phone: "", message: "" });
+      setForm({
+        name: "",
+        email: "",
+        phone: DEFAULT_INDIAN_PHONE,
+        message: "",
+      });
+      setFieldErrors({});
+      setTouched({});
+      setShowErrors(false);
       setStatus("success");
     } catch (error) {
       const isNetwork =
@@ -162,7 +305,10 @@ export function ContactMessageForm({
           <div>
             <label
               htmlFor={`${idPrefix}-name`}
-              className="mb-2 block font-body text-[10px] font-medium uppercase tracking-[0.14em] text-charcoal"
+              className={cn(
+                "mb-2 block font-body text-[10px] font-medium uppercase tracking-[0.14em]",
+                errorVisible("name") ? "text-red-600" : "text-charcoal",
+              )}
             >
               Full Name *
             </label>
@@ -172,18 +318,31 @@ export function ContactMessageForm({
               name="name"
               value={form.name}
               onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="Your full name"
               autoComplete="name"
               required
               disabled={status === "loading"}
-              className={fieldClass}
+              aria-invalid={errorVisible("name")}
+              className={cn(
+                fieldClass,
+                errorVisible("name") ? fieldErrorClass : fieldOkClass,
+              )}
             />
+            {errorVisible("name") ? (
+              <p className="mt-1.5 font-body text-xs text-red-600">
+                {fieldErrors.name}
+              </p>
+            ) : null}
           </div>
 
           <div>
             <label
               htmlFor={`${idPrefix}-email`}
-              className="mb-2 block font-body text-[10px] font-medium uppercase tracking-[0.14em] text-charcoal"
+              className={cn(
+                "mb-2 block font-body text-[10px] font-medium uppercase tracking-[0.14em]",
+                errorVisible("email") ? "text-red-600" : "text-charcoal",
+              )}
             >
               Email Address *
             </label>
@@ -193,20 +352,39 @@ export function ContactMessageForm({
               name="email"
               value={form.email}
               onChange={handleChange}
-              placeholder="your@email.com"
+              onBlur={handleBlur}
+              placeholder="name@example.com"
               autoComplete="email"
+              inputMode="email"
+              pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
               required
               disabled={status === "loading"}
-              className={fieldClass}
+              aria-invalid={errorVisible("email")}
+              className={cn(
+                fieldClass,
+                errorVisible("email") ? fieldErrorClass : fieldOkClass,
+              )}
             />
+            {errorVisible("email") ? (
+              <p className="mt-1.5 font-body text-xs text-red-600">
+                {fieldErrors.email}
+              </p>
+            ) : (
+              <p className="mt-1.5 font-body text-xs text-charcoal/50">
+                Format: name@domain.com
+              </p>
+            )}
           </div>
 
           <div>
             <label
               htmlFor={`${idPrefix}-phone`}
-              className="mb-2 block font-body text-[10px] font-medium uppercase tracking-[0.14em] text-charcoal"
+              className={cn(
+                "mb-2 block font-body text-[10px] font-medium uppercase tracking-[0.14em]",
+                errorVisible("phone") ? "text-red-600" : "text-charcoal",
+              )}
             >
-              Phone Number
+              Phone Number *
             </label>
             <input
               id={`${idPrefix}-phone`}
@@ -214,17 +392,36 @@ export function ContactMessageForm({
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              placeholder="+91 00000 00000"
-              autoComplete="tel"
+              onBlur={handleBlur}
+              placeholder="+91 98765 43210"
+              autoComplete="tel-national"
+              inputMode="numeric"
+              required
               disabled={status === "loading"}
-              className={fieldClass}
+              aria-invalid={errorVisible("phone")}
+              className={cn(
+                fieldClass,
+                errorVisible("phone") ? fieldErrorClass : fieldOkClass,
+              )}
             />
+            {errorVisible("phone") ? (
+              <p className="mt-1.5 font-body text-xs text-red-600">
+                {fieldErrors.phone}
+              </p>
+            ) : (
+              <p className="mt-1.5 font-body text-xs text-charcoal/50">
+                Indian mobile with +91 (10 digits)
+              </p>
+            )}
           </div>
 
           <div>
             <label
               htmlFor={`${idPrefix}-message`}
-              className="mb-2 block font-body text-[10px] font-medium uppercase tracking-[0.14em] text-charcoal"
+              className={cn(
+                "mb-2 block font-body text-[10px] font-medium uppercase tracking-[0.14em]",
+                errorVisible("message") ? "text-red-600" : "text-charcoal",
+              )}
             >
               Message *
             </label>
@@ -233,12 +430,23 @@ export function ContactMessageForm({
               name="message"
               value={form.message}
               onChange={handleChange}
+              onBlur={handleBlur}
               placeholder="How can we assist you?"
               rows={5}
               required
               disabled={status === "loading"}
-              className={cn(fieldClass, "min-h-[6.5rem] resize-none")}
+              aria-invalid={errorVisible("message")}
+              className={cn(
+                fieldClass,
+                "min-h-[6.5rem] resize-none",
+                errorVisible("message") ? fieldErrorClass : fieldOkClass,
+              )}
             />
+            {errorVisible("message") ? (
+              <p className="mt-1.5 font-body text-xs text-red-600">
+                {fieldErrors.message}
+              </p>
+            ) : null}
           </div>
 
           {status === "error" && errorMessage ? (

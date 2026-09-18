@@ -61,7 +61,11 @@ export async function POST(request: Request) {
     ].join("\n");
 
     await sendAppMail({
-      from: process.env.RESEND_FROM?.trim() || mailbox,
+      from:
+        process.env.RESEND_FROM?.trim() ||
+        process.env.SMTP_FROM?.trim() ||
+        process.env.SMTP_USER?.trim() ||
+        mailbox,
       to: mailbox,
       subject,
       text,

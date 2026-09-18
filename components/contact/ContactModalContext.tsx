@@ -257,6 +257,9 @@ function ContactModal({
 
           <ContactMessageForm
             idPrefix="modal-contact"
+            source="nivaara"
+            title="Send Us a Message"
+            description="For stays, reservations, or questions about Nivaãra in Nerul, North Goa."
             className="mt-8 border-t border-border pt-6"
           />
         </div>

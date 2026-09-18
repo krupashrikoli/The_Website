@@ -107,7 +107,7 @@ export default function ContactPage() {
 
               <FadeInSection>
                 <div className="border border-[#E6DDCF] bg-[#FAF7F2] p-6 sm:p-8">
-                  <ContactMessageForm idPrefix="page-contact" />
+                  <ContactMessageForm idPrefix="page-contact" source="ghd" />
                 </div>
               </FadeInSection>
             </div>
