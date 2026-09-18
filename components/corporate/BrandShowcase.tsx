@@ -50,7 +50,7 @@ function BrandRow({
   const isComingSoon = brand.status === "coming-soon";
 
   const textBlock = (
-    <div className="flex flex-col justify-center p-5 sm:p-6 lg:p-7">
+    <div className="flex h-full flex-col justify-center p-5 sm:p-6 lg:p-7">
       {isComingSoon ? (
         <span className="mb-2 inline-block w-fit border border-[#C6A86B]/60 px-2 py-0.5 font-body text-[0.55rem] uppercase tracking-[0.16em] text-[#C6A86B]">
           Coming Soon
@@ -94,8 +94,8 @@ function BrandRow({
     >
       {imageOnRight ? (
         <>
-          <div className="order-2 md:order-1">{textBlock}</div>
-          <div className="order-1 md:order-2">{imageBlock}</div>
+          <div className="order-2 h-full md:order-1">{textBlock}</div>
+          <div className="order-1 h-full md:order-2">{imageBlock}</div>
         </>
       ) : (
         <>
