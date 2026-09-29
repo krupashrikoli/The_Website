@@ -12,7 +12,7 @@ export const DEFAULT_PROPERTY_ID = "nivaara";
 export const CORPORATE_SEARCH_DESTINATIONS = [
   {
     value: "nivaara",
-    label: "Nivaãra — Coco Beach, North Goa",
+    label: "Nivaãra — Nerul, North Goa",
     propertyId: "nivaara",
   },
 ] as const;
@@ -286,7 +286,7 @@ export const NIVAARA_SITE_GALLERY = [
     alt: "Poolside at Nivaãra by GHD Hotels",
   },
   {
-    src: "/images/nivaara/nivaara-rooftop-pool.png",
+    src: "/images/nivaara/nivaara-rooftop-pool.webp",
     alt: "Rooftop pool overlook at Nivaãra by GHD Hotels",
   },
   {
@@ -312,14 +312,14 @@ export const NIVAARA_SITE_GALLERY = [
   },
 
   {
-    src: "/images/nivaara/ghd-hotels-wall-signage.png",
+    src: "/images/corporate/ghd-hotels-wall-signage.webp",
     alt: "GHD Hotels signage at the property",
   },
 ] as const;
 
 export const ROOM_CATEGORIES = [
   {
-    id: "nivaara-room",
+    id: "luxury-studio",
     name: "Luxury Studio",
     summary:
       "Offering generous space, a private balcony, and carefully considered comforts, this studio in Nerul is ideal for both productive stays and relaxing escapes.",
@@ -342,7 +342,7 @@ export const ROOM_CATEGORIES = [
     gallery: NIVAARA_FULL_GALLERY,
   },
   {
-    id: "mountain-view",
+    id: "luxury-valley-room",
     name: "Luxury Valley Room",
     summary:
       "Overlooking Nerul's lush hills, this tranquil room invites slower mornings, scenic views, and a stay connected to nature.",
@@ -365,7 +365,7 @@ export const ROOM_CATEGORIES = [
     gallery: NIVAARA_FULL_GALLERY,
   },
   {
-    id: "sea-view",
+    id: "luxury-palms-room",
     name: "Luxury Palms Room",
     summary:
       "Framed by palms and coastal light, this room in Nerul captures the essence of Goa's charm in a comfortable and elegant setting.",
@@ -434,17 +434,17 @@ export const HOTEL_WHATSAPP = {
 
 /** Nivaãra quick-contact CTAs (sticky Book Now cluster) */
 export const NIVAARA_QUICK_CONTACT = {
-  phone: "919529822907",
-  display: "+91 95298 22907",
-  phoneHref: "tel:+919529822907",
-  whatsappHref: "https://wa.me/919529822907",
+  phone: "918380020407",
+  display: "+91 838 002 0407",
+  phoneHref: "tel:+918380020407",
+  whatsappHref: "https://wa.me/918380020407",
 } as const;
 
 export const SITE = {
   name: "GHD Hotels",
   tagline: "Luxury Hospitality in Goa, Thoughtfully Crafted",
-  property: "Nivaãra — Coco Beach, North Goa",
-  propertyDisplay: "Nivaãra - Coco Beach, North Goa",
+  property: "Nivaãra — Nerul, North Goa",
+  propertyDisplay: "Nivaãra - Nerul, North Goa",
   phone: "+91 838 000 8687",
   phoneHref: "tel:+918380008687",
   whatsappHref: HOTEL_WHATSAPP.waMeUrl,
@@ -504,9 +504,14 @@ export const SEO_KEYWORDS = [
   "luxury stay Goa",
   "affordable luxury Goa",
   "value hotel Goa",
+  "hotel with swimming pool",
   "hotel with swimming pool Goa",
+  "hotel with swimming pool in Goa",
   "hotel with rooftop pool Goa",
+  "hotel with rooftop pool in North Goa",
   "rooftop swimming pool Goa",
+  "rooftop swimming pool hotel in Goa",
+  "hotels with swimming pool in North Goa",
   "pool hotel Goa",
   "hotel with parking Goa",
   "hotel with WiFi Goa",
@@ -542,9 +547,18 @@ export const SEO_KEYWORDS = [
   "stay in Nerul Goa",
   "North Goa hotel",
   "North Goa hotels",
+  "hotels in North Goa",
+  "stays in North Goa",
+  "hotels near North Goa beaches",
+  "hotels in North Goa near beach",
+  "best hotels in North Goa",
+  "best hotels in North Goa near beach",
   "best North Goa hotel",
   "hotel in North Goa",
   "stay in North Goa",
+  "book hotel in North Goa",
+  "affordable places to stay in Goa",
+  "affordable stays in Goa",
   "North Goa accommodation",
   "North Goa holiday stay",
   "North Goa boutique hotel",
@@ -580,6 +594,8 @@ export const SEO_KEYWORDS = [
   "hotel near airport Goa",
   "Goa honeymoon hotel",
   "romantic hotel Goa",
+  "couple friendly hotel in Goa",
+  "couple friendly rooms in Goa",
   "hotel with sea breeze",
   "hotel with scenic views Goa",
   "hotel with nature views Goa",
@@ -660,13 +676,25 @@ export const SEO_KEYWORDS = [
 
 export const NIVAARA_CONTACT = {
   title: "Nivaãra reception",
-  receptionPhone: "+91 83900 20408",
+  receptionPhone: "+91 839 002 0408",
   receptionPhoneHref: "tel:+918390020408",
+  reservationPhones: [
+    { display: "+91 838 000 8687", href: "tel:+918380008687" },
+    { display: "+91 838 002 0407", href: "tel:+918380020407" },
+  ],
+  reservationEmail: "nn.reservation@ghdhotels.in",
+  reservationEmailHref: "mailto:nn.reservation@ghdhotels.in",
+  infoEmail: "info.nerul@ghdhotels.in",
+  infoEmailHref: "mailto:info.nerul@ghdhotels.in",
+  /** @deprecated Prefer infoEmail — kept for terms/privacy copy */
   receptionEmail: "info.nerul@ghdhotels.in",
   receptionEmailHref: "mailto:info.nerul@ghdhotels.in",
   website: "www.ghdhotels.in",
   websiteHref: "https://www.ghdhotels.in",
   addressLines: ["Survey No. 98, Nerul, North Goa - 403114"],
+  mapsUrl: "https://maps.app.goo.gl/UpU5yJPAcP5eVTo6A",
+  mapsEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15378.42839358312!2d73.78077586030322!3d15.505552061521492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfc1005b8dd057%3A0x166552860628bbcd!2sNivaara!5e0!3m2!1sen!2sin!4v1790333637489!5m2!1sen!2sin",
 } as const;
 
 export const RESERVATION_CONTACT = {
@@ -701,44 +729,43 @@ export const CORPORATE_OFFICE = {
   emailHref: SITE.emailHref,
   phone: SITE.phone,
   phoneHref: SITE.phoneHref,
-  image: "/images/nivaara/nivaara-reception.webp",
+  image: "/images/brands/nivaara-reception.webp",
   alt: "Reception at Nivaãra by GHD Hotels",
 } as const;
 
-export const NIVAARA_HERO_VIDEO = "/images/nivaara/hero-section.mp4";
+export const NIVAARA_HERO_VIDEO = "/videos/nivaara/nivaara-hero.mp4";
 export const HERO_VIDEO = NIVAARA_HERO_VIDEO;
 export const HERO_VIDEO_POSTER = "/images/nivaara/nivaara-hero-poster.webp";
 
-export const NIVAARA_LOGO = "/logos/nivaara-logo.png";
-export const SAMRAYA_LOGO = "/logos/samraya-logo.png";
+export const NIVAARA_LOGO = "/logos/nivaara-by-ghd-hotels-logo.webp";
+export const CELESTRA_LOGO = "/logos/celestra-by-ghd-hotels-logo.webp";
+export const SAMRAYA_LOGO = "/logos/samraya-by-ghd-hotels-logo.webp";
+/** Tab / favicon — same mark as header, page, and footer. */
+export const NIVAARA_FAVICON = NIVAARA_LOGO;
 
-export const GHD_LOGO_WHITE = "/logos/ghd-hotels-logo-white.png";
-
-export const GHD_LOGO_GOLD = "/logos/ghd-hotels-logo-gold.png";
-export const GHD_HOTELS_MAIN_LOGO = "/logos/GHDHotelsMainLogo.png";
+export const GHD_HOTELS_MAIN_LOGO = "/logos/ghd-hotels-main-logo.webp";
 /** Primary GHD Hotels logo for header, footer, and on-page use. */
 export const GHD_LOGO = GHD_HOTELS_MAIN_LOGO;
-/** Tab / favicon only — wordmark without monogram. */
-export const GHD_FAVICON = "/logos/ghd-hotels-favicon-gold.png";
 
 export const BEACH_EXPERIENCES_VIDEO =
-  "/images/nivaara/nivaara-beach.mp4";
+  "/videos/nivaara/nivaara-beach.mp4";
 
 export const BEACH_EXPERIENCES_POSTER =
   "/images/nivaara/nivaara-beach-poster.webp";
 
 export const POOL_EXPERIENCES_VIDEO =
-  "/images/nivaara/nivaara-pool.mp4";
+  "/videos/nivaara/nivaara-pool.mp4";
 
 export const POOL_EXPERIENCES_POSTER =
   "/images/nivaara/nivaara-pool-poster.webp";
 
 export const EXPERIENCES_HERO_VIDEO =
-  "/images/experiences/experiences-hero.mp4";
+  "/videos/experiences/experiences-hero.mp4";
 
-export const SILHOUETTE_VIDEO = "/images/nivaara/silhouette.mp4";
+export const SILHOUETTE_VIDEO = "/videos/nivaara/nivaara-silhouette.mp4";
 
-export const FAMILY_AT_BEACH_VIDEO = "/images/nivaara/family-at-beach.mp4";
+export const FAMILY_AT_BEACH_VIDEO =
+  "/videos/nivaara/nivaara-family-at-beach.mp4";
 
 export const EXPLORE_SPACES = [
   {
@@ -851,8 +878,9 @@ export const EXPERIENCE_POSTS = [
     category: "BEACHES",
     date: "May 3, 2026",
     readTime: "9 min read",
-    image: "/images/experiences/beaches/goa-beach-scenic.jpg",
+    image: "/images/experiences/beaches/goa-beach-scenic.webp",
     alt: "Scenic Goan beach with lush hills and gentle waves",
+    published: true,
   },
   {
     slug: "goa-finest-fish-seafood",
@@ -862,8 +890,22 @@ export const EXPERIENCE_POSTS = [
     category: "DINING",
     date: "September 10, 2026",
     readTime: "11 min read",
-    image: "/images/nivaara/goa-seafood-dining.jpg",
+    image: "/images/corporate/goa-seafood-dining.webp",
     alt: "Grilled lobster and cocktail at a refined Goan seafood table",
+    published: true,
+  },
+  {
+    slug: "nightlife-north-goa",
+    title: "10 Shacks & Clubs to Experience Nightlife in North Goa",
+    excerpt:
+      "From Baga's legendary clubs and Candolim's poolside nights to Nerul's waterfront, Anjuna's beach clubs and Siolim's village pubs — ten nightlife spots, each with its own kind of evening.",
+    category: "NIGHTLIFE",
+    date: "September 25, 2026",
+    readTime: "10 min read",
+    image: "/images/experiences/beaches/baga-beach.webp",
+    alt: "Evening light along Baga Beach in North Goa",
+    /** Temporarily hidden from City Attractions — set true to publish again */
+    published: false,
   },
 ] as const;
 
@@ -875,6 +917,7 @@ export const FAQ_SECTIONS = [
         question: "Where is Nivaãra located?",
         answer:
           "Nivaãra by GHD Hotels is located in Nerul, North Goa, offering convenient access to popular beaches, dining destinations, and cultural attractions while providing a peaceful retreat away from the crowds.",
+        showMap: true,
       },
       {
         question: "Which are the nearest beaches to Nivaãra?",

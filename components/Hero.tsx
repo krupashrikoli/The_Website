@@ -14,9 +14,8 @@ export function Hero() {
   useEffect(() => {
     const link = document.createElement("link");
     link.rel = "preload";
-    link.as = "video";
-    link.href = HERO_VIDEO;
-    link.type = "video/mp4";
+    link.as = "image";
+    link.href = HERO_VIDEO_POSTER;
     document.head.appendChild(link);
 
     return () => {
@@ -34,16 +33,18 @@ export function Hero() {
       });
     };
 
-    if (video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
       reveal();
       return;
     }
 
-    video.addEventListener("canplaythrough", reveal, { once: true });
+    video.addEventListener("loadeddata", reveal, { once: true });
+    video.addEventListener("canplay", reveal, { once: true });
     video.addEventListener("error", reveal, { once: true });
 
     return () => {
-      video.removeEventListener("canplaythrough", reveal);
+      video.removeEventListener("loadeddata", reveal);
+      video.removeEventListener("canplay", reveal);
       video.removeEventListener("error", reveal);
     };
   }, []);
@@ -55,6 +56,8 @@ export function Hero() {
           src={HERO_VIDEO_POSTER}
           alt=""
           aria-hidden
+          fetchPriority="high"
+          decoding="async"
           className={cn(
             heroMediaClass,
             "hero-section__poster",
@@ -69,7 +72,7 @@ export function Hero() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           className={cn(
             heroMediaClass,
             "hero-section__media",

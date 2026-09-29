@@ -27,11 +27,11 @@ export function CorporateHero() {
   const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
+    // Preload poster only — avoid tying up the network with the full hero video.
     const link = document.createElement("link");
     link.rel = "preload";
-    link.as = "video";
-    link.href = CORPORATE_HERO.video;
-    link.type = "video/mp4";
+    link.as = "image";
+    link.href = CORPORATE_HERO.poster;
     document.head.appendChild(link);
 
     return () => {
@@ -49,16 +49,18 @@ export function CorporateHero() {
       });
     };
 
-    if (video.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
       reveal();
       return;
     }
 
-    video.addEventListener("canplaythrough", reveal, { once: true });
+    video.addEventListener("loadeddata", reveal, { once: true });
+    video.addEventListener("canplay", reveal, { once: true });
     video.addEventListener("error", reveal, { once: true });
 
     return () => {
-      video.removeEventListener("canplaythrough", reveal);
+      video.removeEventListener("loadeddata", reveal);
+      video.removeEventListener("canplay", reveal);
       video.removeEventListener("error", reveal);
     };
   }, []);
@@ -71,6 +73,8 @@ export function CorporateHero() {
             src={CORPORATE_HERO.poster}
             alt=""
             aria-hidden
+            fetchPriority="high"
+            decoding="async"
             className={cn(
               heroMediaClass,
               "transition-opacity duration-700",
@@ -85,7 +89,7 @@ export function CorporateHero() {
             loop
             muted
             playsInline
-            preload="auto"
+            preload="metadata"
             className={cn(
               heroMediaClass,
               "opacity-0 transition-opacity duration-700",

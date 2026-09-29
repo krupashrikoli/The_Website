@@ -43,6 +43,14 @@ export async function generateMetadata({
     };
   }
 
+  if (post.slug === "nightlife-north-goa") {
+    return {
+      title: "Nightlife in North Goa | Shacks & Clubs Near Nerul",
+      description:
+        "Ten shacks and clubs for nightlife in North Goa — from Club Titos and Café Mambo in Baga to LPK Waterfront in Nerul, Sinq in Candolim, and Soro in Siolim.",
+    };
+  }
+
   return {
     title: `${post.title} | Nivaãra by GHD Hotels`,
     description: post.excerpt,

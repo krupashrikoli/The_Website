@@ -1,5 +1,5 @@
 import { ContactCtaSection } from "@/components/ContactCtaSection";
-import { FAQ_SECTIONS } from "@/lib/constants";
+import { FAQ_SECTIONS, NIVAARA_CONTACT } from "@/lib/constants";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { sectionBodyClass, sectionHeadingClass } from "@/lib/section-typography";
 
@@ -62,6 +62,31 @@ export function FaqContent() {
                             </li>
                           ))}
                         </ul>
+                      ) : null}
+
+                      {"showMap" in item && item.showMap ? (
+                        <div className="mt-4">
+                          <div className="overflow-hidden border border-border">
+                            <iframe
+                              title="Nivaãra by GHD Hotels on Google Maps"
+                              src={NIVAARA_CONTACT.mapsEmbedUrl}
+                              className="block h-56 w-full border-0 sm:h-72"
+                              loading="lazy"
+                              referrerPolicy="strict-origin-when-cross-origin"
+                              allowFullScreen
+                            />
+                          </div>
+                          <p className="mt-2">
+                            <a
+                              href={NIVAARA_CONTACT.mapsUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="font-body text-[10px] uppercase tracking-[0.14em] text-charcoal/60 transition-colors hover:text-[#543119]"
+                            >
+                              Open in Google Maps →
+                            </a>
+                          </p>
+                        </div>
                       ) : null}
                     </div>
                   </details>

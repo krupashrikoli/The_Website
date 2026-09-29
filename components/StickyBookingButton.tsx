@@ -22,8 +22,8 @@ function isPropertyRoute(pathname: string) {
   );
 }
 
-const WHATSAPP_ICON = "/images/nivaara/whatsapp-svgrepo-com.svg";
-const CALL_ICON = "/images/nivaara/call-receive-svgrepo-com.svg";
+const WHATSAPP_ICON = "/icons/whatsapp.svg";
+const CALL_ICON = "/icons/call.svg";
 
 const iconLinkClass =
   "inline-flex size-12 items-center justify-center rounded-full bg-white shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-transform duration-300 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold";

@@ -112,7 +112,7 @@ function ReservationForm({
   return (
     <div
       className={cn(
-        "reservation-ui uppercase group/reservation relative z-20 mx-auto w-full overflow-visible transition-all duration-500 ease-out",
+        "reservation-ui uppercase group/reservation relative z-20 mx-auto w-full overflow-visible rounded-md transition-all duration-500 ease-out",
         isHero
           ? "bg-black/60 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl hover:bg-white/65 hover:shadow-[0_20px_60px_rgba(15,23,42,0.08)]"
           : "border border-border bg-white shadow-[0_12px_40px_rgba(17,17,17,0.08)]",

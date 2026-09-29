@@ -8,7 +8,7 @@ import {
 } from "next/font/google";
 import Script from "next/script";
 import { ContactModalProvider } from "@/components/contact/ContactModalContext";
-import { GHD_FAVICON, SEO_KEYWORDS } from "@/lib/constants";
+import { NIVAARA_FAVICON, SEO_KEYWORDS } from "@/lib/constants";
 import { StickyBookingButton } from "@/components/StickyBookingButton";
 import { FaviconSwitcher } from "@/components/FaviconSwitcher";
 import { PageMediaGate } from "@/components/PageMediaGate";
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: GHD_FAVICON,
+    icon: { url: NIVAARA_FAVICON, type: "image/webp" },
   },
 };
 

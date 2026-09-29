@@ -1,6 +1,6 @@
 /**
  * Seafood dining guide for City Attractions.
- * To add photos later, set `image: "/images/experiences/seafood/<restaurant-slug>.jpg"`
+ * To add photos later, set `image: "/images/experiences/seafood/<restaurant-slug>.webp"`
  * on any restaurant (and hero via EXPERIENCE_POSTS[].image).
  */
 export type SeafoodRestaurant = {
@@ -58,7 +58,7 @@ export const SEAFOOD_BLOG = {
         signature: "Signature prawn curry and seafood platters",
         ambience: "Garden-chic, open-kitchen dining with a full bar",
         reservation: "Reservation recommended — book ahead",
-        image: "/images/experiences/seafood/avos-kitchen-assagao.jpg",
+        image: "/images/experiences/seafood/avos-kitchen-assagao.webp",
         paragraphs: [
           "Among Assagao's more polished tables, Avo's Kitchen offers an upscale take on Goan seafood without losing the warmth of a coastal meal. The open kitchen and garden setting create a composed, contemporary atmosphere — suited to travellers who want Goan flavours with clarity and care.",
           "Expect refined interpretations rather than rustic plating: prawn curry, seafood platters, and a menu that rewards lingering. It is one of the strongest choices in this guide for guests seeking a more elevated North Goa seafood evening.",
@@ -72,7 +72,7 @@ export const SEAFOOD_BLOG = {
         signature: "Seafood curry and creative Goan curries",
         ambience: "Trendy bistro character with a modern Goan lens",
         reservation: "Book ahead where possible",
-        image: "/images/experiences/seafood/peep-kitchen-panaji-food-spread.jpg",
+        image: "/images/experiences/seafood/peep-kitchen-panaji-food-spread.webp",
         paragraphs: [
           "Peep Kitchen brings contrast to the traditional institutions on this list. With a trendy bistro spirit, it leans into modern Goan interpretation — seafood curry and creative curries that feel current without abandoning coastal identity.",
           "It is a natural pick for diners who want authentic Goan food with a contemporary edge, especially after several more classic tables.",
@@ -86,7 +86,7 @@ export const SEAFOOD_BLOG = {
         signature: "Kingfish curry, prawn curry and seafood platters",
         ambience: "Upbeat riverside setting — especially appealing in the evening",
         reservation: "Weekends can be busy",
-        image: "/images/experiences/seafood/fishermans-wharf-panaji.avif",
+        image: "/images/experiences/seafood/fishermans-wharf-panaji.webp",
         paragraphs: [
           "For a lively premium riverside seafood experience, The Fisherman's Wharf remains a Panaji favourite. The waterfront setting, cocktails and Goan seafood make it particularly appealing for an evening meal — kingfish curry, prawn curry and seafood platters among the draws.",
           "It is less hushed than Assagao's garden dining and more social in energy: ideal when the night calls for river light, conversation and a generous seafood table.",
@@ -100,7 +100,7 @@ export const SEAFOOD_BLOG = {
         signature: "Crab Xacuti and Balchão prawns",
         ambience: "Lush garden setting with heritage Goan character",
         reservation: "Call ahead for dinner",
-        image: "/images/experiences/seafood/mums-kitchen-panaji.jpg",
+        image: "/images/experiences/seafood/mums-kitchen-panaji.webp",
         paragraphs: [
           "Mum's Kitchen is less about novelty and more about culinary heritage. In a lush garden setting, it offers authentic Goan fine-dining character — traditional recipes presented with composure, including Crab Xacuti and Balchão prawns.",
           "Come for the sense of Goa's kitchen traditions: spices, family recipes and a dining room that still feels rooted in place.",
@@ -114,7 +114,7 @@ export const SEAFOOD_BLOG = {
         signature: "Patrao Thali — a grand Goan fish thali",
         ambience: "Distinctive Goan dining in Dona Paula",
         reservation: "Thali primarily available at lunch",
-        image: "/images/experiences/seafood/the-goan-room-dona-paula-fish-thali.jpg",
+        image: "/images/experiences/seafood/the-goan-room-dona-paula-fish-thali.webp",
         paragraphs: [
           "In Dona Paula, The Goan Room centres on the Patrao Thali — a grand Goan fish thali idea built around rice, curry and traditional accompaniments. It is a distinctive way to experience Goan seafood as a complete meal rather than a single plate.",
           "Note that the thali is primarily available at lunch, which makes it a strong midday destination for guests exploring beyond the beach.",
@@ -149,7 +149,7 @@ export const SEAFOOD_BLOG = {
         signature: "Butter garlic prawns and Kingfish Xacuti",
         ambience: "Lively Indo-Portuguese / Goan tavern atmosphere",
         reservation: "Booking advised during peak periods",
-        image: "/images/experiences/seafood/martins-corner-south-goa.jpg",
+        image: "/images/experiences/seafood/martins-corner-south-goa.webp",
         paragraphs: [
           "Martin's Corner is an iconic Goan dining institution rather than an ultra-luxury restaurant — and that is precisely why it belongs on a premium food itinerary. The lively Indo-Portuguese tavern atmosphere, extensive seafood menu and reputation for kingfish and Goan seafood preparations have made it a long-standing destination.",
           "Butter garlic prawns and Kingfish Xacuti are among the dishes that keep tables returning. Expect a busy room; for peak periods, booking ahead is wise.",

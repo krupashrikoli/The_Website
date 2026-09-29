@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { CorporateFooter } from "@/components/corporate/CorporateFooter";
-import {
-  FadeInSection,
-  SectionHeading,
-} from "@/components/corporate/CorporateUi";
+import { CorporatePageHero } from "@/components/corporate/CorporatePageHero";
+import { FadeInSection } from "@/components/corporate/CorporateUi";
 import { ContactMessageForm } from "@/components/contact/ContactMessageForm";
+import { CONTACT_PAGE } from "@/lib/corporate-content";
 import {
   CORPORATE_OFFICE,
   RESERVATION_CONTACT,
-  SALES_CONTACT,
   SITE,
 } from "@/lib/constants";
 
@@ -23,17 +21,17 @@ export default function ContactPage() {
   return (
     <div className="corporate-site bg-white text-[#2D2D2D]">
       <Header />
-      <main className="pt-14 md:pt-16">
+      <main className="pt-0">
+        <CorporatePageHero
+          image={CONTACT_PAGE.heroImage}
+          imageAlt={CONTACT_PAGE.heroImageAlt}
+          headline={CONTACT_PAGE.headline}
+          paragraph={CONTACT_PAGE.paragraph}
+        />
+
         <section className="py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1100px] px-6 lg:px-10">
-            <FadeInSection>
-              <SectionHeading>Contact Us</SectionHeading>
-              <p className="mt-4 max-w-xl font-body text-base font-normal text-black">
-                Reach GHD Hotels for reservations and general enquiries.
-              </p>
-            </FadeInSection>
-
-            <div className="mt-10 grid gap-10 lg:mt-12 lg:grid-cols-2 lg:gap-14">
+            <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
               <FadeInSection>
                 <div className="space-y-8">
                   <div className="border-t border-[#E6DDCF] pt-6">
@@ -55,22 +53,6 @@ export default function ContactPage() {
                           className="font-body text-base text-[#2D2D2D] transition-colors hover:text-[#C6A86B]"
                         >
                           {RESERVATION_CONTACT.email}
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="border-t border-[#E6DDCF] pt-6">
-                    <h2 className="font-body text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#C6A86B]">
-                      {SALES_CONTACT.title}
-                    </h2>
-                    <ul className="mt-4 space-y-2">
-                      <li>
-                        <a
-                          href={SALES_CONTACT.phoneHref}
-                          className="font-body text-base text-[#2D2D2D] transition-colors hover:text-[#C6A86B]"
-                        >
-                          {SALES_CONTACT.phone}
                         </a>
                       </li>
                     </ul>

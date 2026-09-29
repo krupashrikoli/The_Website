@@ -9,16 +9,21 @@ export type ExperiencePost = {
   readTime: string;
   image: string | null;
   alt: string;
+  published: boolean;
 };
 
+function publishedPosts() {
+  return EXPERIENCE_POSTS.filter((post) => post.published);
+}
+
 export function getAllExperiencePosts(): ExperiencePost[] {
-  return [...EXPERIENCE_POSTS];
+  return [...publishedPosts()];
 }
 
 export function getExperiencePost(slug: string): ExperiencePost | undefined {
-  return EXPERIENCE_POSTS.find((post) => post.slug === slug);
+  return publishedPosts().find((post) => post.slug === slug);
 }
 
 export function getAllExperienceSlugs(): string[] {
-  return EXPERIENCE_POSTS.map((post) => post.slug);
+  return publishedPosts().map((post) => post.slug);
 }

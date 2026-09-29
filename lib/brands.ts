@@ -10,9 +10,12 @@ export type Brand = {
   name: string;
   tagline: string;
   status: BrandStatus;
-  description: string;
+  /** Full editorial paragraphs for brand showcase */
+  descriptionParagraphs: readonly string[];
+  /** Compact one-liner for menus / cards */
   shortDescription: string;
   megaMenuDescription: string;
+  positioning: string;
   location?: {
     area: string;
     detail?: string;
@@ -32,14 +35,16 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
   {
     id: "nivaara",
     name: "Nivaãra",
-    tagline: "A boutique hotel in Nerul, North Goa",
+    tagline: "A boutique smart-comfort hotel in Nerul, North Goa",
     status: "live",
-    description:
-      "A contemporary boutique stay offering comfortable spaces, warm hospitality and easy access to the beaches and attractions of North Goa.",
+    descriptionParagraphs: [
+      "Contemporary studio stays designed for leisure, workations and easy North Goa getaways. With private balconies, work-friendly spaces and a rooftop pool, Nivaãra brings together modern comfort and warm, relaxed hospitality.",
+    ],
     shortDescription:
-      "Contemporary spaces, warm hospitality and the easy rhythm of Goa.",
+      "Contemporary studio stays for leisure, workations and easy North Goa getaways.",
     megaMenuDescription:
-      "A contemporary boutique stay offering comfortable spaces, warm hospitality and easy access to the beaches and attractions of North Goa.",
+      "A boutique smart-comfort hotel in Nerul, North Goa — studio rooms, rooftop pool and warm hospitality near Coco Beach.",
+    positioning: "3★ Smart Comfort · Boutique Hotel",
     location: {
       area: "Nerul, North Goa",
       detail: "Near Coco Beach",
@@ -48,49 +53,55 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
     exploreHref: "/nivaara",
     bookHref: "/nivaara",
     image: "/images/nivaara/nivaara-full-building-view.webp",
-    cardImage: "/images/nivaara/nivaara-rooftop-pool.png",
-    imageAlt: "Nivaãra by GHD Hotels in Nerul, North Goa",
+    cardImage: "/images/brands/nivaara-reception.webp",
+    imageAlt: "Reception at Nivaãra by GHD Hotels in Nerul, North Goa",
     highlights: ["SEA VIEW", "ROOFTOP POOL", "NORTH GOA"],
     public: true,
   },
   {
     id: "samraya",
     name: "Samrāya",
-    tagline: "A destination resort — coming soon",
+    tagline: "A luxury destination resort in the Sahyadris",
     status: "coming-soon",
-    description:
-      "An upcoming GHD Hotels brand shaped by Indian artistry, cultural depth and refined hospitality — a new chapter in thoughtful stays.",
+    descriptionParagraphs: [
+      "An immersive resort where Indian artistry, nature and contemporary luxury come together. With premium residences, villas, dining, wellness and curated experiences, Samrāya is designed for memorable destination stays.",
+    ],
     shortDescription:
-      "An upcoming hospitality brand shaped by Indian artistry, cultural depth and refined hospitality.",
+      "An immersive luxury destination resort shaped by Indian artistry and the Sahyadris.",
     megaMenuDescription:
-      "An upcoming GHD Hotels brand celebrating Indian artistry, cultural heritage and sophisticated hospitality. A new chapter is taking shape.",
+      "A luxury destination resort in the Sahyadris — premium residences, dining, wellness and curated experiences in Dodamarg.",
+    positioning: "5★ Luxury · Destination Resort",
     location: {
       area: "Dodamarg, Maharashtra",
+      detail: "Coming Soon",
     },
-    route: "/samraya",
-    image: "/images/nivaara/nivaara-reception.webp",
-    cardImage: "/images/nivaara/samraya-entrance.png",
-    imageAlt: "Samrāya by GHD Hotels — coming soon",
+    route: "/brands",
+    image: "/images/brands/samraya-entrance.webp",
+    cardImage: "/images/brands/samraya-entrance.webp",
+    imageAlt: "Entrance of Samrāya by GHD Hotels — coming soon",
     public: true,
   },
   {
     id: "celestra",
     name: "Celéstra",
-    tagline: "A luxury hotel in Dodamarg — coming soon",
+    tagline: "A contemporary premium hotel in Dodamarg",
     status: "coming-soon",
-    description:
-      "An upcoming luxury hotel by GHD Hotels in Dodamarg, Maharashtra — refined contemporary hospitality in a destination of quiet natural beauty.",
+    descriptionParagraphs: [
+      "A refined stay designed for both business and leisure travellers, combining contemporary spaces, thoughtful amenities and effortless hospitality.",
+    ],
     shortDescription:
-      "A luxury hotel experience taking shape in Dodamarg.",
+      "A contemporary premium hotel in Dodamarg for business and leisure travellers.",
     megaMenuDescription:
-      "Celéstra by GHD Hotels — an upcoming luxury hotel in Dodamarg, Maharashtra. A new chapter in refined hospitality is on the way.",
+      "A contemporary premium hotel in Dodamarg — refined comfort for modern business and leisure travel.",
+    positioning: "4★ Premium · Business & Leisure",
     location: {
       area: "Dodamarg, Maharashtra",
+      detail: "Coming Soon",
     },
-    route: "/celestra",
-    image: "/images/nivaara/celestra-luxury-hotel-dodamarg.png",
-    cardImage: "/images/nivaara/celestra-luxury-hotel-dodamarg.png",
-    imageAlt: "Celéstra by GHD Hotels — luxury hotel in Dodamarg, coming soon",
+    route: "/brands",
+    image: "/images/brands/celestra-luxury-hotel-entrance.webp",
+    cardImage: "/images/brands/celestra-luxury-hotel-entrance.webp",
+    imageAlt: "Entrance of Celéstra luxury hotel by GHD Hotels in Dodamarg",
     public: true,
   },
 ] as const;

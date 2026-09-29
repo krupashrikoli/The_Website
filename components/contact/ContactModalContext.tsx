@@ -13,8 +13,6 @@ import { ContactMessageForm } from "@/components/contact/ContactMessageForm";
 import {
   CORPORATE_OFFICE,
   NIVAARA_CONTACT,
-  RESERVATION_CONTACT,
-  SALES_CONTACT,
 } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { sectionHeadingClass } from "@/lib/section-typography";
@@ -34,27 +32,6 @@ const contactLabelClass =
 
 const contactValueClass =
   "font-body text-xs font-light leading-snug text-charcoal/75 sm:text-[0.8125rem]";
-
-function ContactSectionDivider({
-  orientation = "horizontal",
-  className,
-}: {
-  orientation?: "horizontal" | "vertical";
-  className?: string;
-}) {
-  return (
-    <div
-      role="presentation"
-      aria-hidden
-      className={cn(
-        orientation === "vertical"
-          ? "w-px shrink-0 self-stretch bg-gradient-to-b from-transparent via-[#543119]/20 to-transparent"
-          : "h-px w-full bg-gradient-to-r from-transparent via-[#543119]/20 to-transparent",
-        className,
-      )}
-    />
-  );
-}
 
 function ContactSection({
   title,
@@ -89,12 +66,17 @@ function ContactDetailRow({
 function ContactLink({
   href,
   children,
+  className,
 }: {
   href: string;
   children: ReactNode;
+  className?: string;
 }) {
   return (
-    <a href={href} className="transition-colors hover:text-charcoal">
+    <a
+      href={href}
+      className={cn("transition-colors hover:text-charcoal", className)}
+    >
       {children}
     </a>
   );
@@ -168,89 +150,60 @@ function ContactModal({
             </button>
           </div>
 
-          <div className="mt-4 grid text-left sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-8 lg:gap-10">
-            <div>
-              <ContactSection title={NIVAARA_CONTACT.title}>
-                <ContactDetailRow label="Reception">
-                  <ContactLink href={NIVAARA_CONTACT.receptionPhoneHref}>
-                    {NIVAARA_CONTACT.receptionPhone}
-                  </ContactLink>
-                </ContactDetailRow>
-
-                <ContactDetailRow label="Email">
-                  <ContactLink href={NIVAARA_CONTACT.receptionEmailHref}>
-                    {NIVAARA_CONTACT.receptionEmail}
-                  </ContactLink>
-                </ContactDetailRow>
-
-                <ContactDetailRow label="Website">
-                  <ContactLink href={NIVAARA_CONTACT.websiteHref}>
-                    {NIVAARA_CONTACT.website}
-                  </ContactLink>
-                </ContactDetailRow>
-
-                <ContactDetailRow label="Address">
-                  <address className="not-italic">
-                    {NIVAARA_CONTACT.addressLines.map((line) => (
-                      <p key={line}>{line}</p>
-                    ))}
-                  </address>
-                </ContactDetailRow>
-              </ContactSection>
-
-              <ContactSectionDivider className="my-4 sm:my-5" />
-
-              <ContactSection title={RESERVATION_CONTACT.title}>
-                <ContactDetailRow label="Reservation">
-                  <ContactLink href={RESERVATION_CONTACT.phoneHref}>
-                    {RESERVATION_CONTACT.phone}
-                  </ContactLink>
-                </ContactDetailRow>
-
-                <ContactDetailRow label="Email">
-                  <ContactLink href={RESERVATION_CONTACT.emailHref}>
-                    {RESERVATION_CONTACT.email}
-                  </ContactLink>
-                </ContactDetailRow>
-              </ContactSection>
-
-              <ContactSectionDivider className="my-4 sm:my-5" />
-
-              <ContactSection title={SALES_CONTACT.title}>
-                <ContactDetailRow label="Sales">
-                  <ContactLink href={SALES_CONTACT.phoneHref}>
-                    {SALES_CONTACT.phone}
-                  </ContactLink>
-                </ContactDetailRow>
-              </ContactSection>
-            </div>
-
-            <ContactSectionDivider
-              orientation="vertical"
-              className="my-1 hidden sm:block"
-            />
-
-            <ContactSectionDivider className="my-5 sm:hidden" />
-
-            <ContactSection title={CORPORATE_OFFICE.title}>
-              <ContactDetailRow label="Phone">
-                <ContactLink href={CORPORATE_OFFICE.phoneHref}>
-                  {CORPORATE_OFFICE.phone}
+          <div className="mt-4 text-left">
+            <ContactSection title={NIVAARA_CONTACT.title}>
+              <ContactDetailRow label="Reception">
+                <ContactLink href={NIVAARA_CONTACT.receptionPhoneHref}>
+                  {NIVAARA_CONTACT.receptionPhone}
                 </ContactLink>
               </ContactDetailRow>
 
-              <ContactDetailRow label="Email">
-                <ContactLink href={CORPORATE_OFFICE.emailHref}>
-                  {CORPORATE_OFFICE.email}
+              <ContactDetailRow label="Reservation">
+                <div className="flex flex-col gap-1">
+                  {NIVAARA_CONTACT.reservationPhones.map((phone) => (
+                    <ContactLink key={phone.href} href={phone.href}>
+                      {phone.display}
+                    </ContactLink>
+                  ))}
+                </div>
+              </ContactDetailRow>
+
+              <ContactDetailRow label="Reservation Email">
+                <ContactLink href={NIVAARA_CONTACT.reservationEmailHref}>
+                  {NIVAARA_CONTACT.reservationEmail}
+                </ContactLink>
+              </ContactDetailRow>
+
+              <ContactDetailRow label="Info Email">
+                <ContactLink href={NIVAARA_CONTACT.infoEmailHref}>
+                  {NIVAARA_CONTACT.infoEmail}
                 </ContactLink>
               </ContactDetailRow>
 
               <ContactDetailRow label="Address">
                 <address className="not-italic">
-                  {CORPORATE_OFFICE.addressLines.map((line) => (
+                  {NIVAARA_CONTACT.addressLines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
                 </address>
+                <div className="mt-3 overflow-hidden border border-border bg-muted/20">
+                  <iframe
+                    title="Nivaãra by GHD Hotels on Google Maps"
+                    src={NIVAARA_CONTACT.mapsEmbedUrl}
+                    className="block h-52 w-full border-0 sm:h-64"
+                    loading="lazy"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  />
+                </div>
+                <p className="mt-2">
+                  <ContactLink
+                    href={NIVAARA_CONTACT.mapsUrl}
+                    className="text-[10px] uppercase tracking-[0.14em] text-charcoal/60 hover:text-[#543119]"
+                  >
+                    Open in Google Maps →
+                  </ContactLink>
+                </p>
               </ContactDetailRow>
             </ContactSection>
           </div>

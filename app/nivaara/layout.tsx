@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { NIVAARA_LOGO } from "@/lib/constants";
+import { NIVAARA_FAVICON } from "@/lib/constants";
 
 export const metadata: Metadata = {
   icons: {
-    icon: NIVAARA_LOGO,
+    icon: { url: NIVAARA_FAVICON, type: "image/webp" },
   },
 };
 

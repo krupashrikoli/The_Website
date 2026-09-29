@@ -32,13 +32,9 @@ function isCorporateRoute(pathname: string) {
   return CORPORATE_ROUTES.has(pathname);
 }
 
+/** Transparent-over-hero header on all GHD + Nivaãra pages with a full-bleed hero. */
 function hasHeroOverlay(pathname: string) {
-  return (
-    pathname === "/" ||
-    pathname === "/nivaara" ||
-    pathname === "/culture" ||
-    pathname === "/careers"
-  );
+  return isCorporateRoute(pathname) || pathname === "/nivaara";
 }
 
 type HeaderLogos = {
@@ -617,14 +613,14 @@ export function Header() {
     measureHeader();
     window.addEventListener("resize", measureHeader, { passive: true });
     return () => window.removeEventListener("resize", measureHeader);
-  }, [measureHeader]);
+  }, [measureHeader, pathname, hasHero]);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   const heroOffset = Math.min(scrollY, headerHeight);
   const showStickyHeader = !hasHero || scrollY >= headerHeight;

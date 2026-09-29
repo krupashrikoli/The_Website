@@ -121,15 +121,17 @@ export function PhilosophySection({ className }: { className?: string }) {
   return (
     <section className={cn("bg-white pb-12 sm:pb-16 lg:pb-20", className)}>
       <FadeInSection>
-        <div className="mx-auto max-w-[920px] px-4 sm:px-6 lg:px-8">
-          <Image
-            src={data.image}
-            alt={data.imageAlt}
-            width={1448}
-            height={1086}
-            className="mx-auto h-auto w-full object-cover"
-            sizes="(max-width: 960px) 100vw, 920px"
-          />
+        <div className="relative w-full overflow-hidden">
+          <div className="relative aspect-[16/10] w-full min-h-[220px] sm:aspect-[21/9] sm:min-h-[280px] md:min-h-[360px] lg:min-h-[480px] xl:min-h-[560px]">
+            <Image
+              src={data.image}
+              alt={data.imageAlt}
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+              quality={85}
+            />
+          </div>
         </div>
       </FadeInSection>
 

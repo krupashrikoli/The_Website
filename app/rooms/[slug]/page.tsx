@@ -24,9 +24,9 @@ export async function generateMetadata({
   }
 
   const seoTitlePrefix =
-    room.id === "nivaara-room"
+    room.id === "luxury-studio"
       ? "Luxury Studio Room in Nerul, Goa"
-      : room.id === "mountain-view"
+      : room.id === "luxury-valley-room"
         ? "Valley View Room in Nerul, Goa"
         : "Palms & Coastal View Room in Nerul, Goa";
 

@@ -21,13 +21,13 @@ export const CORPORATE_NAV = [
 ] as const;
 
 export const CORPORATE_HERO = {
-  video: "/images/nivaara/ghd-hotels-hero.mp4",
-  poster: "/images/nivaara/goa-beach-aerial.jpg",
+  video: "/videos/corporate/ghd-hotels-hero.mp4",
+  poster: "/images/corporate/ghd-hotels-hero-poster.webp",
   imageAlt: "GHD Hotels hospitality",
 } as const;
 
 export const CORPORATE_BEACH_BANNER = {
-  image: "/images/nivaara/goa-beach-aerial.jpg",
+  image: "/images/corporate/goa-beach-aerial.webp",
   imageAlt: "Sunset over the Goa coast with palm trees",
 } as const;
 
@@ -44,17 +44,17 @@ export const BRANDS_SECTION = {
 
 export const BRAND_SHOWCASE = {
   nivaara: {
-    image: "/images/nivaara/nivaara-rooftop-pool.png",
-    imageAlt: "Rooftop pool at Nivaãra by GHD Hotels",
+    image: "/images/brands/nivaara-reception.webp",
+    imageAlt: "Reception at Nivaãra by GHD Hotels",
     cta: { label: "Explore More", href: "/nivaara" },
   },
   samraya: {
-    image: "/images/nivaara/samraya-entrance.png",
+    image: "/images/brands/samraya-entrance.webp",
     imageAlt: "Samrāya by GHD Hotels — coming soon",
   },
   celestra: {
-    image: "/images/nivaara/celestra-luxury-hotel-dodamarg.png",
-    imageAlt: "Celéstra by GHD Hotels — luxury hotel in Dodamarg, coming soon",
+    image: "/images/brands/celestra-luxury-hotel-entrance.webp",
+    imageAlt: "Entrance of Celéstra luxury hotel by GHD Hotels in Dodamarg",
   },
 } as const;
 
@@ -63,7 +63,7 @@ export const CULTURE = {
   headline: "Belonging",
   paragraph:
     "At GHD Hotels, we believe hospitality begins with a feeling of belonging. It is the culture at the heart of who we are—creating an environment where every guest, colleague, and partner feels welcomed, valued, and genuinely at home. From the way we work together to the way we care for our guests, we strive to create meaningful connections, foster inclusivity, and make every stay feel personal, warm, and memorable.",
-  image: "/images/nivaara/ghd-team-hands-joined.png",
+  image: "/images/corporate/ghd-team-hands-joined.webp",
   imageAlt: "Hands joined together in unity and belonging",
 } as const;
 
@@ -106,7 +106,7 @@ export const PHILOSOPHY = {
     "We believe a hotel should have a soul of its own—shaped by its surroundings and brought to life through thoughtful design, meaningful experiences, exceptional dining, and genuine hospitality. Every detail should have a purpose, every space should invite connection, and every stay should leave you with something to remember.",
     "At GHD Hotels, we create places that feel distinctive yet welcoming, elevated yet effortless—destinations where people come not simply to stay, but to experience, connect, and return.",
   ],
-  image: "/images/nivaara/infinity-pool.png",
+  image: "/images/corporate/infinity-pool.webp",
   imageAlt: "Infinity pool overlooking green hills",
 } as const;
 
@@ -181,7 +181,7 @@ export const GHD_EXPERIENCE = {
     {
       title: "Discover",
       description: "Experience the destination beyond your room.",
-      image: "/images/experiences/beaches/coco-beach.png",
+      image: "/images/experiences/beaches/coco-beach.webp",
     },
     {
       title: "Return",
@@ -253,7 +253,7 @@ export const ABOUT_PAGE = {
     "From Nivaãra in Nerul, Goa to Samrāya and Celéstra in Dodamarg, Maharashtra, each GHD property is created with its own character, bringing together thoughtful design, genuine hospitality, and experiences shaped by the destination.",
     "We are building a diverse collection of places to stay, gather, discover, and belong.",
   ],
-  heroImage: "/images/nivaara/samraya-resort-view.png",
+  heroImage: "/images/brands/samraya-resort-view.webp",
   heroImageAlt: "Samrāya by GHD Hotels — destination resort aerial view",
   leadership: LEADERSHIP,
 } as const;
@@ -262,6 +262,14 @@ export const BRANDS_PAGE = {
   headline: "Our Brands",
   paragraph:
     "A growing collection of distinctive hotels and destinations — each with its own character, shaped by thoughtful design, genuine hospitality, and a strong sense of place.",
-  heroImage: "/images/nivaara/ghd-hotels-wall-signage.png",
+  heroImage: "/images/corporate/ghd-hotels-wall-signage.webp",
   heroImageAlt: "GHD Hotels signage on the wall",
+} as const;
+
+export const CONTACT_PAGE = {
+  headline: "Contact Us",
+  paragraph: "Reach GHD Hotels for reservations and general enquiries.",
+  heroImage: "/images/corporate/ghd-hotels-reception-service-bell.webp",
+  heroImageAlt:
+    "Guest ringing the reception service bell at a GHD Hotels front desk",
 } as const;

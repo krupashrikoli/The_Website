@@ -9,6 +9,7 @@ import {
 } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { SoftReveal } from "@/components/SoftReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { sectionBodyClass, sectionHeadingClass } from "@/lib/section-typography";
@@ -331,7 +332,7 @@ export function ExploreNivaara() {
       />
 
       <aside className="relative z-10 mx-auto max-w-[90rem] shrink-0 px-6 lg:hidden">
-        {editorialContent(false)}
+        <SoftReveal>{editorialContent(false)}</SoftReveal>
       </aside>
 
       <div className="relative z-10 mt-16 w-full min-w-0 lg:mt-0">
@@ -361,9 +362,9 @@ export function ExploreNivaara() {
               className="hidden shrink-0 lg:block lg:w-[34vw] lg:max-w-[28rem] xl:w-[30vw] xl:max-w-[32rem]"
               style={introPadTop > 0 ? { paddingTop: introPadTop } : undefined}
             >
-              <div className="w-full pl-6 pr-2 xl:pl-10 2xl:pl-16">
+              <SoftReveal className="w-full pl-6 pr-2 xl:pl-10 2xl:pl-16">
                 {editorialContent(true)}
-              </div>
+              </SoftReveal>
             </article>
 
             {visibleSpaces.map((space, index) => {
@@ -376,37 +377,39 @@ export function ExploreNivaara() {
                   ref={isFirst ? firstSlideRef : undefined}
                   className="w-[48vw] shrink-0 sm:w-[42vw] md:w-[34vw] lg:w-[27vw] xl:w-[23vw]"
                 >
-                  <div className="group w-full overflow-hidden">
-                    <div
-                      ref={
-                        isFirst
-                          ? imageRef
-                          : isLast
-                            ? lastImageRef
-                            : undefined
-                      }
-                      className="relative aspect-[4/3] w-full overflow-hidden bg-[#c8d5d2]"
-                    >
-                      <Image
-                        src={space.image}
-                        alt={space.alt}
-                        fill
-                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
-                        sizes="(max-width: 768px) 48vw, (max-width: 1280px) 34vw, 23vw"
-                        priority={isFirst || isLast}
-                        onLoad={isFirst || isLast ? measure : undefined}
-                      />
+                  <SoftReveal index={index + 1}>
+                    <div className="group w-full overflow-hidden">
+                      <div
+                        ref={
+                          isFirst
+                            ? imageRef
+                            : isLast
+                              ? lastImageRef
+                              : undefined
+                        }
+                        className="relative aspect-[4/3] w-full overflow-hidden bg-[#c8d5d2]"
+                      >
+                        <Image
+                          src={space.image}
+                          alt={space.alt}
+                          fill
+                          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+                          sizes="(max-width: 768px) 48vw, (max-width: 1280px) 34vw, 23vw"
+                          priority={isFirst || isLast}
+                          onLoad={isFirst || isLast ? measure : undefined}
+                        />
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="mt-7 w-full">
-                    <h3 className={sectionHeadingClass(true, "mt-0")}>
-                      <MobileTwoLineTitle title={space.title} />
-                    </h3>
-                    <p className={sectionBodyClass(true, "mt-3 lg:mt-4")}>
-                      {space.description}
-                    </p>
-                  </div>
+                    <div className="mt-7 w-full">
+                      <h3 className={sectionHeadingClass(true, "mt-0")}>
+                        <MobileTwoLineTitle title={space.title} />
+                      </h3>
+                      <p className={sectionBodyClass(true, "mt-3 lg:mt-4")}>
+                        {space.description}
+                      </p>
+                    </div>
+                  </SoftReveal>
                 </article>
               );
             })}

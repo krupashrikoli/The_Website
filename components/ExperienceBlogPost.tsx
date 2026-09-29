@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BeachesBlogContent } from "@/components/BeachesBlogContent";
+import { NightlifeBlogContent } from "@/components/NightlifeBlogContent";
 import { SeafoodBlogContent } from "@/components/SeafoodBlogContent";
 import { getExperienceBlogContent } from "@/lib/experience-content";
 import type { ExperiencePost } from "@/lib/experiences";
@@ -67,6 +68,7 @@ export function ExperienceBlogPost({ post }: ExperienceBlogPostProps) {
   const paragraphs = getExperienceBlogContent(post.slug);
   const isBeachesGuide = post.slug === "beaches-of-goa";
   const isSeafoodGuide = post.slug === "goa-finest-fish-seafood";
+  const isNightlifeGuide = post.slug === "nightlife-north-goa";
 
   return (
     <article>
@@ -114,6 +116,13 @@ export function ExperienceBlogPost({ post }: ExperienceBlogPostProps) {
           headline="Goa's Finest Fish & Seafood"
           subheading="Seven exceptional places to discover the flavours, traditions and coastal character of Goa."
         />
+      ) : isNightlifeGuide ? (
+        <HeroMedia
+          image={post.image}
+          alt={post.alt}
+          headline="Nightlife in North Goa"
+          subheading="Ten shacks and clubs — each with its own kind of evening."
+        />
       ) : (
         <HeroMedia image={post.image} alt={post.alt} />
       )}
@@ -122,6 +131,8 @@ export function ExperienceBlogPost({ post }: ExperienceBlogPostProps) {
         <BeachesBlogContent />
       ) : isSeafoodGuide ? (
         <SeafoodBlogContent />
+      ) : isNightlifeGuide ? (
+        <NightlifeBlogContent />
       ) : (
         <section className="bg-white px-6 py-14 md:py-20 lg:px-10">
           <div className="mx-auto max-w-3xl">

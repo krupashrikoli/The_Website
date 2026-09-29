@@ -4,7 +4,6 @@ import {
   HOTEL_CHECK_OUT_TIME,
   HOTEL_POOL_HOURS,
   NIVAARA_CONTACT,
-  RESERVATION_CONTACT,
   SITE,
 } from "@/lib/constants";
 import type { LegalDocument } from "@/lib/legal-document";
@@ -92,13 +91,13 @@ export const TERMS_AND_CONDITIONS: LegalDocument = {
         "Voucher number and complete guest details are mandatory.",
         "Last-minute reservations are subject to room availability.",
       ],
-      footer: `Reservation Email: ${RESERVATION_CONTACT.email}\nReservation No.: ${RESERVATION_CONTACT.phone}\nWebsite: ${NIVAARA_CONTACT.website}`,
+      footer: `Reservation Email: ${NIVAARA_CONTACT.reservationEmail}\nReservation No.: ${NIVAARA_CONTACT.reservationPhones[0].display}\nWebsite: ${NIVAARA_CONTACT.website}`,
     },
     {
       id: "cancellation-retention",
       title: "5. Cancellation & Retention Policy",
       paragraphs: [
-        `All cancellation requests must be submitted in writing via email to ${RESERVATION_CONTACT.email}.`,
+        `All cancellation requests must be submitted in writing via email to ${NIVAARA_CONTACT.reservationEmail}.`,
         "The following cancellation charges shall apply:",
       ],
       bullets: [
@@ -121,7 +120,7 @@ export const TERMS_AND_CONDITIONS: LegalDocument = {
         "Requests to amend beyond the 60-day window shall be treated as a cancellation.",
         "A second amendment request for the same reservation will not be permitted and shall be treated as a cancellation.",
         "Amendment requests received less than 72 hours before check-in shall be governed by the Cancellation & Retention Policy stated above.",
-        `All amendment requests must be submitted in writing to ${RESERVATION_CONTACT.email} and remain subject to room availability and applicable rate differences.`,
+        `All amendment requests must be submitted in writing to ${NIVAARA_CONTACT.reservationEmail} and remain subject to room availability and applicable rate differences.`,
       ],
     },
     {
@@ -301,8 +300,8 @@ export const TERMS_AND_CONDITIONS: LegalDocument = {
       title: "18. Contact & Reservations",
       paragraphs: [
         "GHD Hotels LLP",
-        `Reservation Email: ${RESERVATION_CONTACT.email}`,
-        `Reservation No.: ${RESERVATION_CONTACT.phone}`,
+        `Reservation Email: ${NIVAARA_CONTACT.reservationEmail}`,
+        `Reservation No.: ${NIVAARA_CONTACT.reservationPhones[0].display}`,
         `Website: ${NIVAARA_CONTACT.website}`,
       ],
     },

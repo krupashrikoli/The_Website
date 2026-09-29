@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CORPORATE_FOOTER, CORPORATE_NAV, GHD_LOGO } from "@/lib/corporate-content";
-import { NIVAARA_LOGO, SAMRAYA_LOGO } from "@/lib/constants";
+import { CELESTRA_LOGO, NIVAARA_LOGO, SAMRAYA_LOGO } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 type IconProps = {
@@ -84,7 +84,7 @@ export function CorporateFooter({ className }: { className?: string }) {
         aria-hidden
       >
         <Image
-          src="/images/nivaara/footer-mandala.png"
+          src="/images/corporate/footer-mandala.webp"
           alt=""
           width={1082}
           height={1082}
@@ -167,30 +167,44 @@ export function CorporateFooter({ className }: { className?: string }) {
             >
               <Link
                 href="/nivaara"
-                className="w-[min(18vw,3.75rem)] shrink-0 opacity-65 transition-opacity duration-300 hover:opacity-90 sm:w-[4.75rem] md:w-[5.25rem]"
+                className="h-9 w-auto shrink-0 opacity-65 transition-opacity duration-300 hover:opacity-90 sm:h-11 md:h-12"
                 aria-label="Nivaãra by GHD Hotels"
               >
                 <Image
                   src={NIVAARA_LOGO}
                   alt="Nivaãra by GHD Hotels"
                   width={736}
-                  height={498}
-                  className="h-auto w-full object-contain object-center"
-                  sizes="(max-width: 640px) 18vw, 84px"
+                  height={510}
+                  className="h-full w-auto object-contain object-center"
+                  sizes="(max-width: 640px) 56px, 72px"
                 />
               </Link>
 
               <div
-                className="w-[min(18vw,3.75rem)] shrink-0 opacity-65 sm:w-[4.75rem] md:w-[5.25rem]"
+                className="h-7 w-auto shrink-0 opacity-65 sm:h-8 md:h-9"
+                aria-label="Celéstra by GHD Hotels"
+              >
+                <Image
+                  src={CELESTRA_LOGO}
+                  alt="Celéstra by GHD Hotels"
+                  width={932}
+                  height={255}
+                  className="h-full w-auto object-contain object-center"
+                  sizes="(max-width: 640px) 100px, 140px"
+                />
+              </div>
+
+              <div
+                className="h-9 w-auto shrink-0 opacity-65 sm:h-11 md:h-12"
                 aria-label="Samrāya by GHD Hotels"
               >
                 <Image
                   src={SAMRAYA_LOGO}
                   alt="Samrāya by GHD Hotels"
-                  width={3120}
-                  height={2244}
-                  className="h-auto w-full object-contain object-center"
-                  sizes="(max-width: 640px) 18vw, 84px"
+                  width={1794}
+                  height={1324}
+                  className="h-full w-auto object-contain object-center"
+                  sizes="(max-width: 640px) 56px, 72px"
                 />
               </div>
             </div>

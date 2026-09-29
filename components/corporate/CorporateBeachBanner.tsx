@@ -9,9 +9,10 @@ export function CorporateBeachBanner() {
       <Image
         src={CORPORATE_BEACH_BANNER.image}
         alt={CORPORATE_BEACH_BANNER.imageAlt}
-        width={4240}
-        height={2832}
+        width={2400}
+        height={1603}
         priority
+        quality={85}
         className="h-auto w-full object-cover"
         sizes="100vw"
       />

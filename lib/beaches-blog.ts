@@ -1,14 +1,14 @@
 const BEACH_IMAGES = {
-  coco: "/images/experiences/beaches/coco-beach.png",
-  sinquerim: "/images/experiences/beaches/sinquerim-beach.png",
-  candolim: "/images/experiences/beaches/candolim-beach.png",
-  calangute: "/images/experiences/beaches/calangute-beach.png",
-  baga: "/images/experiences/beaches/baga-beach.png",
-  anjuna: "/images/experiences/beaches/anjuna-beach.png",
-  vagator: "/images/experiences/beaches/vagator-beach.png",
-  arambol: "/images/experiences/beaches/arambol-beach.png",
-  morjim: "/images/experiences/beaches/morjim-beach.png",
-  mandremAshwem: "/images/experiences/beaches/mandrem-ashwem-beach.png",
+  coco: "/images/experiences/beaches/coco-beach.webp",
+  sinquerim: "/images/experiences/beaches/sinquerim-beach.webp",
+  candolim: "/images/experiences/beaches/candolim-beach.webp",
+  calangute: "/images/experiences/beaches/calangute-beach.webp",
+  baga: "/images/experiences/beaches/baga-beach.webp",
+  anjuna: "/images/experiences/beaches/anjuna-beach.webp",
+  vagator: "/images/experiences/beaches/vagator-beach.webp",
+  arambol: "/images/experiences/beaches/arambol-beach.webp",
+  morjim: "/images/experiences/beaches/morjim-beach.webp",
+  mandremAshwem: "/images/experiences/beaches/mandrem-ashwem-beach.webp",
 } as const;
 
 export type BeachGuideEntry = {

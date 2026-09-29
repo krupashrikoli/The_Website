@@ -9,7 +9,7 @@ export const CULTURE_PAGE = {
     headline: "Where everyone has a place.",
     paragraph:
       "At GHD Hotels, we believe the best hospitality starts with how we make people feel. Belonging is at the heart of our culture—creating an environment where our guests, colleagues, and partners feel welcomed, respected, valued, and genuinely part of something.",
-    image: "/images/nivaara/ghd-team-hands-joined.png",
+    image: "/images/corporate/ghd-team-hands-joined.webp",
     imageAlt: "Hands joined together — a moment of belonging",
   },
   meaning: {
@@ -19,7 +19,7 @@ export const CULTURE_PAGE = {
       "At GHD, we want this feeling to exist at every level—from the way our teams work together to the way we welcome a guest through the door.",
     ],
     emphases: ["Seen.", "Valued.", "Connected.", "Included."],
-    image: "/images/nivaara/ghd-team-hands-joined.png",
+    image: "/images/corporate/ghd-team-hands-joined.webp",
     imageAlt: "A quiet moment of human connection",
   },
   inAction: {
@@ -152,7 +152,7 @@ export const CAREERS_PAGE = {
   closing: {
     lines: ["Come as you are.", "Grow with us.", "Belong here."],
     brand: "GHD Hotels",
-    image: "/images/nivaara/samraya-resort-view.png",
+    image: "/images/brands/samraya-resort-view.webp",
     imageAlt: "A GHD destination at golden hour",
   },
 } as const;

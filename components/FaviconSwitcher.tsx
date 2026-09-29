@@ -2,40 +2,30 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { GHD_FAVICON, NIVAARA_LOGO } from "@/lib/constants";
-
-const CORPORATE_ROUTES = new Set([
-  "/",
-  "/about",
-  "/brands",
-  "/culture",
-  "/careers",
-  "/contact",
-  "/leadership",
-]);
-
-function isCorporateRoute(pathname: string) {
-  return CORPORATE_ROUTES.has(pathname);
-}
+import { NIVAARA_FAVICON } from "@/lib/constants";
 
 function setFavicon(href: string) {
   const head = document.head;
-  const existing = head.querySelectorAll<HTMLLinkElement>("link[rel='icon'], link[rel='shortcut icon']");
+  const existing = head.querySelectorAll<HTMLLinkElement>(
+    "link[rel='icon'], link[rel='shortcut icon']",
+  );
 
   existing.forEach((link) => link.remove());
 
   const link = document.createElement("link");
   link.rel = "icon";
-  link.type = "image/png";
+  link.type = "image/webp";
   link.href = href;
   head.appendChild(link);
 }
 
+/** Keeps the tab icon on the current Nivaãra mark across client navigations. */
 export function FaviconSwitcher() {
   const pathname = usePathname();
 
   useEffect(() => {
-    setFavicon(isCorporateRoute(pathname) ? GHD_FAVICON : NIVAARA_LOGO);
+    // Cache-bust so browsers pick up logo replacements at the same brand path.
+    setFavicon(`${NIVAARA_FAVICON}?v=2`);
   }, [pathname]);
 
   return null;

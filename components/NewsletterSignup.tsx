@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { SoftReveal } from "@/components/SoftReveal";
 import { SectionIntro } from "@/components/ui/SectionIntro";
 import { sectionBodyClass, sectionHeadingClass } from "@/lib/section-typography";
 import { SITE } from "@/lib/constants";
@@ -115,27 +116,32 @@ export function NewsletterSignup({ idSuffix = "" }: NewsletterSignupProps) {
   return (
     <section className="border-t border-border bg-muted py-10 md:py-12">
       <div className="mx-auto max-w-2xl px-6 text-center lg:px-10">
-        <SectionIntro
-          label="Newsletter"
-          title="Be the First to Know"
-          description="Sign up to receive news and offers from Nivaãra by GHD Hotels in your inbox."
-        />
+        <SoftReveal>
+          <SectionIntro
+            label="Newsletter"
+            title="Be the First to Know"
+            description="Sign up to receive news and offers from Nivaãra by GHD Hotels in your inbox."
+          />
+        </SoftReveal>
 
         {status === "success" ? (
-          <div
-            role="status"
-            aria-live="polite"
-            className="mx-auto mt-6 max-w-lg border border-[#543119]/20 bg-white px-6 py-8 text-center sm:px-8 sm:py-10"
-          >
-            <p className={sectionHeadingClass(false, "mt-0")}>
-              Thank you for signing up
-            </p>
-            <p className={sectionBodyClass(false, "mt-3")}>
-              Your subscription has been received. We&apos;ll share news and
-              offers from Nivaãra by GHD Hotels in your inbox soon.
-            </p>
-          </div>
+          <SoftReveal>
+            <div
+              role="status"
+              aria-live="polite"
+              className="mx-auto mt-6 max-w-lg border border-[#543119]/20 bg-white px-6 py-8 text-center sm:px-8 sm:py-10"
+            >
+              <p className={sectionHeadingClass(false, "mt-0")}>
+                Thank you for signing up
+              </p>
+              <p className={sectionBodyClass(false, "mt-3")}>
+                Your subscription has been received. We&apos;ll share news and
+                offers from Nivaãra by GHD Hotels in your inbox soon.
+              </p>
+            </div>
+          </SoftReveal>
         ) : (
+          <SoftReveal index={1}>
           <form
             onSubmit={handleSubmit}
             noValidate
@@ -223,6 +229,7 @@ export function NewsletterSignup({ idSuffix = "" }: NewsletterSignupProps) {
               </div>
             ) : null}
           </form>
+          </SoftReveal>
         )}
       </div>
     </section>
