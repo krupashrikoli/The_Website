@@ -72,9 +72,9 @@ function BrandRow({
       </p>
 
       {cta ? (
-        <div className="mt-4 sm:mt-6">
+        <div className="mt-5 sm:mt-7">
           {cardHref ? (
-            <span className="inline-flex items-center gap-2 font-body text-[0.65rem] font-medium uppercase tracking-[0.14em] text-[#2D2D2D] transition-colors group-hover:text-[#C6A86B] sm:text-[0.72rem] sm:tracking-[0.16em]">
+            <span className="inline-flex items-center gap-2 border border-[#C6A86B] bg-[#C6A86B] px-4 py-2.5 font-body text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#2D2D2D] transition-colors group-hover:bg-[#b8975a] sm:px-5 sm:py-3 sm:text-[0.72rem] sm:tracking-[0.16em]">
               {cta.label}
               <span
                 aria-hidden

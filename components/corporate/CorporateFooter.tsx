@@ -165,20 +165,19 @@ export function CorporateFooter({ className }: { className?: string }) {
               className="flex items-center gap-3 sm:gap-4 md:gap-5"
               aria-label="GHD Hotels brands"
             >
-              <Link
-                href="/nivaara"
-                className="h-9 w-auto shrink-0 opacity-65 transition-opacity duration-300 hover:opacity-90 sm:h-11 md:h-12"
-                aria-label="Nivaãra by GHD Hotels"
+              <div
+                className="h-9 w-auto shrink-0 opacity-65 sm:h-11 md:h-12"
+                aria-label="Samrāya by GHD Hotels"
               >
                 <Image
-                  src={NIVAARA_LOGO}
-                  alt="Nivaãra by GHD Hotels"
-                  width={736}
-                  height={510}
+                  src={SAMRAYA_LOGO}
+                  alt="Samrāya by GHD Hotels"
+                  width={1794}
+                  height={1324}
                   className="h-full w-auto object-contain object-center"
                   sizes="(max-width: 640px) 56px, 72px"
                 />
-              </Link>
+              </div>
 
               <div
                 className="h-7 w-auto shrink-0 opacity-65 sm:h-8 md:h-9"
@@ -194,19 +193,20 @@ export function CorporateFooter({ className }: { className?: string }) {
                 />
               </div>
 
-              <div
-                className="h-9 w-auto shrink-0 opacity-65 sm:h-11 md:h-12"
-                aria-label="Samrāya by GHD Hotels"
+              <Link
+                href="/nivaara"
+                className="h-9 w-auto shrink-0 opacity-65 transition-opacity duration-300 hover:opacity-90 sm:h-11 md:h-12"
+                aria-label="Nivaãra by GHD Hotels"
               >
                 <Image
-                  src={SAMRAYA_LOGO}
-                  alt="Samrāya by GHD Hotels"
-                  width={1794}
-                  height={1324}
+                  src={NIVAARA_LOGO}
+                  alt="Nivaãra by GHD Hotels"
+                  width={736}
+                  height={510}
                   className="h-full w-auto object-contain object-center"
                   sizes="(max-width: 640px) 56px, 72px"
                 />
-              </div>
+              </Link>
             </div>
           </div>
         </div>

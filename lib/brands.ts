@@ -33,32 +33,6 @@ export type Brand = {
 
 export const PUBLIC_BRANDS: readonly Brand[] = [
   {
-    id: "nivaara",
-    name: "Nivaãra",
-    tagline: "A boutique smart-comfort hotel in Nerul, North Goa",
-    status: "live",
-    descriptionParagraphs: [
-      "Contemporary studio stays designed for leisure, workations and easy North Goa getaways. With private balconies, work-friendly spaces and a rooftop pool, Nivaãra brings together modern comfort and warm, relaxed hospitality.",
-    ],
-    shortDescription:
-      "Contemporary studio stays for leisure, workations and easy North Goa getaways.",
-    megaMenuDescription:
-      "A boutique smart-comfort hotel in Nerul, North Goa — studio rooms, rooftop pool and warm hospitality near Coco Beach.",
-    positioning: "3★ Smart Comfort · Boutique Hotel",
-    location: {
-      area: "Nerul, North Goa",
-      detail: "Near Coco Beach",
-    },
-    route: "/nivaara",
-    exploreHref: "/nivaara",
-    bookHref: "/nivaara",
-    image: "/images/nivaara/nivaara-full-building-view.webp",
-    cardImage: "/images/brands/nivaara-reception.webp",
-    imageAlt: "Reception at Nivaãra by GHD Hotels in Nerul, North Goa",
-    highlights: ["SEA VIEW", "ROOFTOP POOL", "NORTH GOA"],
-    public: true,
-  },
-  {
     id: "samraya",
     name: "Samrāya",
     tagline: "A luxury destination resort in the Sahyadris",
@@ -102,6 +76,32 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
     image: "/images/brands/celestra-luxury-hotel-entrance.webp",
     cardImage: "/images/brands/celestra-luxury-hotel-entrance.webp",
     imageAlt: "Entrance of Celéstra luxury hotel by GHD Hotels in Dodamarg",
+    public: true,
+  },
+  {
+    id: "nivaara",
+    name: "Nivaãra",
+    tagline: "A boutique smart-comfort hotel in Nerul, North Goa",
+    status: "live",
+    descriptionParagraphs: [
+      "Contemporary studio stays designed for leisure, workations and easy North Goa getaways. With private balconies, work-friendly spaces and a rooftop pool, Nivaãra brings together modern comfort and warm, relaxed hospitality.",
+    ],
+    shortDescription:
+      "Contemporary studio stays for leisure, workations and easy North Goa getaways.",
+    megaMenuDescription:
+      "A boutique smart-comfort hotel in Nerul, North Goa — studio rooms, rooftop pool and warm hospitality near Coco Beach.",
+    positioning: "3★ Smart Comfort · Boutique Hotel",
+    location: {
+      area: "Nerul, North Goa",
+      detail: "Near Coco Beach",
+    },
+    route: "/nivaara",
+    exploreHref: "/nivaara",
+    bookHref: "/nivaara",
+    image: "/images/nivaara/nivaara-full-building-view.webp",
+    cardImage: "/images/brands/nivaara-reception.webp",
+    imageAlt: "Reception at Nivaãra by GHD Hotels in Nerul, North Goa",
+    highlights: ["SEA VIEW", "ROOFTOP POOL", "NORTH GOA"],
     public: true,
   },
 ] as const;
