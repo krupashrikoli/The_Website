@@ -19,11 +19,13 @@ import {
 
 export const metadata: Metadata = {
   title: {
-    absolute:
-      "Hotels in North Goa | Best Boutique Hotel in Nerul | GHD Hotels",
+    absolute: "GHD Hotels | Luxury Hotels & Resorts in India",
   },
   description:
     "Looking for hotels in North Goa? Book Nivaãra by GHD Hotels in Nerul — boutique stay near Coco Beach, Candolim & Calangute with rooftop pool and spacious studio rooms.",
+  openGraph: {
+    title: "GHD Hotels | Luxury Hotels & Resorts in India",
+  },
 };
 
 export default function HomePage() {
