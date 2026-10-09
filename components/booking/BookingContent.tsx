@@ -103,7 +103,7 @@ export function BookingContent() {
       params.set("roomCategory", primaryCategory);
     }
 
-    router.push(`/booking/details?${params.toString()}`);
+    router.push(`/nivaara/booking/details?${params.toString()}`);
   }
 
   return (

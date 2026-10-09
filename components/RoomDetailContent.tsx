@@ -45,7 +45,7 @@ export function RoomDetailContent({ room }: { room: RoomCategory }) {
       <section className="bg-white px-6 py-14 md:py-20 lg:px-10">
         <div className="mx-auto max-w-4xl">
           <Link
-            href="/rooms"
+            href="/nivaara/rooms"
             className="inline-flex font-body text-xs font-medium uppercase tracking-[0.14em] text-charcoal transition-colors hover:text-[#543119]"
           >
             ← All rooms

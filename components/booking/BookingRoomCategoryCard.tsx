@@ -102,7 +102,7 @@ export function BookingRoomCategoryCard({
               ) : null}
 
               <Link
-                href={`/rooms/${room.id}`}
+                href={`/nivaara/rooms/${room.id}`}
                 className="font-body text-xs lowercase tracking-[0.08em] text-charcoal underline underline-offset-4"
               >
                 View details

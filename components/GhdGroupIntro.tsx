@@ -67,7 +67,7 @@ export function GhdGroupIntro() {
             title="Ready for Your Goa Escape?"
             description="Stay just minutes from Coco Beach in spacious studio rooms, enjoy our rooftop pool, warm hospitality, and thoughtfully designed spaces for work or relaxation."
             buttonLabel="Check Our Rooms"
-            href="/rooms"
+            href="/nivaara/rooms"
             actionStyle="link"
             benefits={[
               "Best Available Rate",

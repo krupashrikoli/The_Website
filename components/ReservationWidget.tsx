@@ -303,7 +303,7 @@ export function ReservationBar({
       return;
     }
 
-    router.push(`/booking?${params.toString()}`);
+    router.push(`/nivaara/booking?${params.toString()}`);
   };
 
   return (

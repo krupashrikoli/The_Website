@@ -244,7 +244,7 @@ export function buildAddRoomBookingHref(booking: BookingSearch): string | null {
 
   params.set(BOOKING_OPEN_GUESTS_PARAM, "1");
 
-  return `/booking?${params.toString()}`;
+  return `/nivaara/booking?${params.toString()}`;
 }
 
 export function getDefaultBookingHref(): string {

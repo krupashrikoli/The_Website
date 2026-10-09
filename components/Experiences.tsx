@@ -59,7 +59,7 @@ export function Experiences() {
             className="mt-6 flex justify-start"
           >
             <Link
-              href="/city-attractions/beaches-of-goa"
+              href="/nivaara/city-attractions/beaches-of-goa"
               className="group inline-flex items-center gap-2 border-b border-white/80 pb-1 font-body text-[0.8125rem] font-medium uppercase tracking-[0.14em] text-white transition-colors duration-300 hover:border-white hover:text-white/85"
             >
               Discover

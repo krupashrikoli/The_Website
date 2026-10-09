@@ -7,14 +7,7 @@ import { getDefaultBookingHref } from "@/lib/booking";
 import { NIVAARA_QUICK_CONTACT } from "@/lib/constants";
 
 /** Property routes where the sticky Book Now strip should appear */
-const PROPERTY_ROUTE_PREFIXES = [
-  "/nivaara",
-  "/rooms",
-  "/booking",
-  "/faqs",
-  "/city-attractions",
-  "/gallery",
-];
+const PROPERTY_ROUTE_PREFIXES = ["/nivaara"];
 
 function isPropertyRoute(pathname: string) {
   return PROPERTY_ROUTE_PREFIXES.some(

@@ -19,5 +19,5 @@ export default async function BookingCheckoutPage({
   }
 
   const qs = query.toString();
-  redirect(`/booking/details${qs ? `?${qs}` : ""}`);
+  redirect(`/nivaara/booking/details${qs ? `?${qs}` : ""}`);
 }

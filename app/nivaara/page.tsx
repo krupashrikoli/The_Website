@@ -36,7 +36,7 @@ export default function NivaaraPage() {
           title="Stay Close to North Goa's Best Beaches"
           description="Wake up just minutes from Coco Beach and spend your days exploring Candolim, Calangute, Baga, and Panaji before returning to the comfort of Nivaãra."
           buttonLabel="Discover"
-          href="/city-attractions/beaches-of-goa"
+          href="/nivaara/city-attractions/beaches-of-goa"
           actionStyle="link"
           tone="transparent"
           className="py-16 md:py-20 lg:py-24"

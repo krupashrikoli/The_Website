@@ -201,6 +201,6 @@ export const SEAFOOD_BLOG = {
       "From a refined seafood table in Assagao to a classic fish thali in Benaulim, Goa rewards those willing to explore beyond the obvious. Wherever your journey takes you, leave room for one more Goan meal.",
     ],
     ctaLabel: "Discover Goa with GHD Hotels",
-    ctaHref: "/city-attractions",
+    ctaHref: "/nivaara/city-attractions",
   },
 } as const;

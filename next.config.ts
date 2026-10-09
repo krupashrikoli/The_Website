@@ -4,38 +4,91 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   async redirects() {
     return [
+      // Legacy experience URLs → Nivaãra city attractions
       {
         source: "/experiences",
-        destination: "/city-attractions",
+        destination: "/nivaara/city-attractions",
         permanent: true,
       },
       {
         source: "/experiences/:slug",
-        destination: "/city-attractions/:slug",
+        destination: "/nivaara/city-attractions/:slug",
         permanent: true,
       },
-      // SEO room slug renames
+      // Old root Nivaãra routes → nested under /nivaara
+      // SEO room slug renames (must stay above generic /rooms/:slug)
       {
         source: "/rooms/nivaara-room",
-        destination: "/rooms/luxury-studio",
+        destination: "/nivaara/rooms/luxury-studio",
         permanent: true,
       },
       {
         source: "/rooms/mountain-view",
-        destination: "/rooms/luxury-valley-room",
+        destination: "/nivaara/rooms/luxury-valley-room",
         permanent: true,
       },
       {
         source: "/rooms/sea-view",
-        destination: "/rooms/luxury-palms-room",
+        destination: "/nivaara/rooms/luxury-palms-room",
         permanent: true,
       },
-      // Coming-soon brand placeholders → brands page
       {
-        source: "/samraya",
-        destination: "/brands",
-        permanent: false,
+        source: "/rooms",
+        destination: "/nivaara/rooms",
+        permanent: true,
       },
+      {
+        source: "/rooms/:slug",
+        destination: "/nivaara/rooms/:slug",
+        permanent: true,
+      },
+      {
+        source: "/gallery",
+        destination: "/nivaara/gallery",
+        permanent: true,
+      },
+      {
+        source: "/faqs",
+        destination: "/nivaara/faqs",
+        permanent: true,
+      },
+      {
+        source: "/city-attractions",
+        destination: "/nivaara/city-attractions",
+        permanent: true,
+      },
+      {
+        source: "/city-attractions/:slug",
+        destination: "/nivaara/city-attractions/:slug",
+        permanent: true,
+      },
+      {
+        source: "/booking",
+        destination: "/nivaara/booking",
+        permanent: true,
+      },
+      {
+        source: "/booking/:path*",
+        destination: "/nivaara/booking/:path*",
+        permanent: true,
+      },
+      // SEO room slug renames (via nested paths)
+      {
+        source: "/nivaara/rooms/nivaara-room",
+        destination: "/nivaara/rooms/luxury-studio",
+        permanent: true,
+      },
+      {
+        source: "/nivaara/rooms/mountain-view",
+        destination: "/nivaara/rooms/luxury-valley-room",
+        permanent: true,
+      },
+      {
+        source: "/nivaara/rooms/sea-view",
+        destination: "/nivaara/rooms/luxury-palms-room",
+        permanent: true,
+      },
+      // Coming-soon Celéstra placeholder
       {
         source: "/celestra",
         destination: "/brands",

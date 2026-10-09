@@ -391,10 +391,10 @@ export const ROOM_CATEGORIES = [
 
 export const NAV_ITEMS = [
   { label: "HOME", href: "/nivaara" },
-  { label: "ROOMS", href: "/rooms" },
-  { label: "CITY ATTRACTIONS", href: "/city-attractions" },
-  { label: "GALLERY", href: "/gallery" },
-  { label: "FAQs", href: "/faqs" },
+  { label: "ROOMS", href: "/nivaara/rooms" },
+  { label: "CITY ATTRACTIONS", href: "/nivaara/city-attractions" },
+  { label: "GALLERY", href: "/nivaara/gallery" },
+  { label: "FAQs", href: "/nivaara/faqs" },
   { label: "CONTACT", href: "/#contact" },
 ] as const;
 
@@ -445,8 +445,8 @@ export const SITE = {
   tagline: "Luxury Hospitality in Goa, Thoughtfully Crafted",
   property: "Nivaãra — Nerul, North Goa",
   propertyDisplay: "Nivaãra - Nerul, North Goa",
-  phone: "+91 838 000 8687",
-  phoneHref: "tel:+918380008687",
+  phone: "+91 838 002 0407",
+  phoneHref: "tel:+918380020407",
   whatsappHref: HOTEL_WHATSAPP.waMeUrl,
   phoneSecondary: "+91 839 002 0408",
   phoneSecondaryHref: "tel:+918390020408",
@@ -454,7 +454,7 @@ export const SITE = {
   emailHref: "mailto:info@ghdhotels.in",
   location: "Nerul, North Goa, India — 5 minutes from Coco Beach",
   locationHref: "https://maps.google.com/?q=Nivaãra+by+GHD+Hotels+Nerul+Goa",
-  reserveHref: "tel:+918380008687",
+  reserveHref: "tel:+918380020407",
 } as const;
 
 /**
@@ -679,7 +679,6 @@ export const NIVAARA_CONTACT = {
   receptionPhone: "+91 839 002 0408",
   receptionPhoneHref: "tel:+918390020408",
   reservationPhones: [
-    { display: "+91 838 000 8687", href: "tel:+918380008687" },
     { display: "+91 838 002 0407", href: "tel:+918380020407" },
   ],
   reservationEmail: "nn.reservation@ghdhotels.in",
