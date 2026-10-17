@@ -46,15 +46,16 @@ function BrandMegaPanel({
         </p>
 
         <div className="mt-8 flex flex-wrap gap-4">
-          {brand.status === "live" && brand.exploreHref ? (
-            <Link
-              href={brand.exploreHref}
+          {brand.exploreHref || brand.route ? (
+            <a
+              href={brand.exploreHref || brand.route}
               onClick={onNavigate}
-              className="inline-flex items-center gap-2 font-body text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#2D2D2D] transition-colors hover:text-[#C6A86B]"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-body text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#2D2D2D] transition-colors touch-manipulation hover:text-[#C6A86B]"
             >
               Explore {brand.name}
               <span aria-hidden>→</span>
-            </Link>
+            </a>
           ) : null}
           {brand.status === "live" && brand.bookHref ? (
             <a
@@ -62,7 +63,7 @@ function BrandMegaPanel({
               target="_blank"
               rel="noopener noreferrer"
               onClick={onNavigate}
-              className="inline-flex items-center gap-2 font-body text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#C6A86B] transition-colors hover:text-[#2D2D2D]"
+              className="inline-flex items-center gap-2 font-body text-[0.68rem] font-medium uppercase tracking-[0.14em] text-[#C6A86B] transition-colors touch-manipulation hover:text-[#2D2D2D]"
             >
               Book Your Stay
               <span aria-hidden>→</span>
@@ -130,18 +131,16 @@ export function BrandsMegaMenu({
                 Our Brands
               </p>
               <ul className="mt-5 space-y-1">
-                {brands.map((brand) => (
-                  <li key={brand.id}>
-                    <button
-                      type="button"
-                      onClick={() => setActiveId(brand.id)}
-                      className={cn(
-                        "w-full border-l-2 py-3 pl-4 text-left transition-colors",
-                        activeId === brand.id
-                          ? "border-[#C6A86B] bg-white/60"
-                          : "border-transparent hover:border-[#E6DDCF] hover:bg-white/40",
-                      )}
-                    >
+                {brands.map((brand) => {
+                  const href = brand.exploreHref || brand.route;
+                  const itemClass = cn(
+                    "block w-full border-l-2 py-3 pl-4 text-left transition-colors touch-manipulation",
+                    activeId === brand.id
+                      ? "border-[#C6A86B] bg-white/60"
+                      : "border-transparent hover:border-[#E6DDCF] hover:bg-white/40",
+                  );
+                  const label = (
+                    <>
                       <span className="block font-heading text-lg text-[#2D2D2D]">
                         {brand.name}
                       </span>
@@ -150,9 +149,34 @@ export function BrandsMegaMenu({
                           ? "Coming Soon"
                           : brand.tagline}
                       </span>
-                    </button>
-                  </li>
-                ))}
+                    </>
+                  );
+
+                  return (
+                    <li key={brand.id}>
+                      {href ? (
+                        <a
+                          href={href}
+                          onClick={onClose}
+                          onMouseEnter={() => setActiveId(brand.id)}
+                          onFocus={() => setActiveId(brand.id)}
+                          rel="noopener noreferrer"
+                          className={itemClass}
+                        >
+                          {label}
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setActiveId(brand.id)}
+                          className={itemClass}
+                        >
+                          {label}
+                        </button>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
               <Link
                 href="/brands"

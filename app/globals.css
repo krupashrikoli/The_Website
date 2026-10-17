@@ -90,11 +90,21 @@
 }
 
 .page-media-loading {
-  visibility: hidden;
+  /* Keep layout interactive; only soft-hide until first paint is ready */
+  opacity: 0;
 }
 
 .page-media-ready {
-  visibility: visible;
+  opacity: 1;
+}
+
+/* One-tap activation for links/buttons (avoids iOS sticky-hover double tap) */
+a,
+button,
+[role="button"],
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @layer utilities {
@@ -156,11 +166,13 @@
   .site-header--scrolled .site-header__nav-link {
     color: #111111 !important;
   }
-  .site-header--scrolled .site-header__nav-link:hover {
-    color: rgb(17 17 17 / 0.7) !important;
-  }
-  .site-header--scrolled .site-header__contact:hover {
-    color: rgb(84 49 25 / 0.65) !important;
+  @media (hover: hover) and (pointer: fine) {
+    .site-header--scrolled .site-header__nav-link:hover {
+      color: rgb(17 17 17 / 0.7) !important;
+    }
+    .site-header--scrolled .site-header__contact:hover {
+      color: rgb(84 49 25 / 0.65) !important;
+    }
   }
 }
 

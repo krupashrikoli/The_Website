@@ -34,7 +34,7 @@ function isCorporateRoute(pathname: string) {
 
 /** Transparent-over-hero header on all GHD + Nivaãra pages with a full-bleed hero. */
 function hasHeroOverlay(pathname: string) {
-  return isCorporateRoute(pathname) || pathname === "/nivaara";
+  return isCorporateRoute(pathname);
 }
 
 type HeaderLogos = {
@@ -61,7 +61,7 @@ function getHeaderLogos(isCorporate: boolean): HeaderLogos {
   return {
     transparent: NIVAARA_LOGO,
     sticky: NIVAARA_LOGO,
-    homeHref: "/nivaara",
+    homeHref: "https://nivaara.ghdhotels.in",
     alt: "Nivaãra by GHD Hotels",
     transparentClassName: "object-contain object-center scale-[1.05]",
     stickyClassName: "object-contain object-left scale-[1.02]",
@@ -79,16 +79,20 @@ function contactClass(scrolled: boolean) {
 
 function navLinkClass(scrolled: boolean, uppercase = true) {
   return cn(
-    "site-header__nav-link font-body text-[0.58rem] font-medium tracking-[0.12em] transition-colors duration-500 sm:text-[0.65rem] md:text-xs",
+    "site-header__nav-link touch-manipulation font-body text-[0.58rem] font-medium tracking-[0.12em] transition-colors duration-500 sm:text-[0.65rem] md:text-xs",
     uppercase && "uppercase",
-    scrolled ? "text-charcoal hover:text-charcoal/70" : "text-white/90 hover:text-white",
+    scrolled
+      ? "text-charcoal [@media(hover:hover)]:hover:text-charcoal/70"
+      : "text-white/90 [@media(hover:hover)]:hover:text-white",
   );
 }
 
 function corporateNavLinkClass(scrolled: boolean) {
   return cn(
-    "site-header__nav-link font-body text-[0.7rem] font-medium tracking-[0.04em] transition-colors duration-500 sm:text-[0.75rem] md:text-[0.8125rem]",
-    scrolled ? "text-charcoal hover:text-charcoal/70" : "text-white/90 hover:text-white",
+    "site-header__nav-link touch-manipulation font-body text-[0.7rem] font-medium tracking-[0.04em] transition-colors duration-500 sm:text-[0.75rem] md:text-[0.8125rem]",
+    scrolled
+      ? "text-charcoal [@media(hover:hover)]:hover:text-charcoal/70"
+      : "text-white/90 [@media(hover:hover)]:hover:text-white",
   );
 }
 
@@ -653,9 +657,11 @@ export function Header() {
         aria-hidden={showStickyHeader}
         inert={showStickyHeader ? true : undefined}
       >
-        <div className={cn("pointer-events-auto", showStickyHeader && "pointer-events-none")}>
-          <TransparentHeaderContent {...headerProps} />
-        </div>
+        {!showStickyHeader ? (
+          <div className="pointer-events-auto">
+            <TransparentHeaderContent {...headerProps} />
+          </div>
+        ) : null}
       </header>
 
       <header
@@ -665,13 +671,13 @@ export function Header() {
           "site-header site-header--scrolled fixed inset-x-0 top-0 z-[100] bg-white shadow-[0_4px_24px_rgba(17,17,17,0.06)] transition-[opacity,transform] duration-300 ease-out",
           showStickyHeader
             ? "pointer-events-auto visible translate-y-0 opacity-100"
-            : "pointer-events-none invisible -translate-y-2 opacity-0",
+            : "pointer-events-none invisible -translate-y-full opacity-0",
         )}
         style={{ backgroundColor: "#ffffff" }}
         aria-hidden={!showStickyHeader}
         inert={!showStickyHeader ? true : undefined}
       >
-        <StickyHeaderContent {...headerProps} />
+        {showStickyHeader ? <StickyHeaderContent {...headerProps} /> : null}
       </header>
     </>
   );

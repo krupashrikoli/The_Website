@@ -4,107 +4,95 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   async redirects() {
     return [
-      // Legacy experience URLs → Nivaãra city attractions
+      // Brand property sites are separate deployments
       {
-        source: "/experiences",
-        destination: "/nivaara/city-attractions",
-        permanent: true,
+        source: "/nivaara",
+        destination: "https://nivaara.ghdhotels.in",
+        permanent: false,
       },
       {
-        source: "/experiences/:slug",
-        destination: "/nivaara/city-attractions/:slug",
-        permanent: true,
-      },
-      // Old root Nivaãra routes → nested under /nivaara
-      // SEO room slug renames (must stay above generic /rooms/:slug)
-      {
-        source: "/rooms/nivaara-room",
-        destination: "/nivaara/rooms/luxury-studio",
-        permanent: true,
+        source: "/nivaara/:path*",
+        destination: "https://nivaara.ghdhotels.in/:path*",
+        permanent: false,
       },
       {
-        source: "/rooms/mountain-view",
-        destination: "/nivaara/rooms/luxury-valley-room",
-        permanent: true,
+        source: "/samraya",
+        destination: "https://samraya.ghdhotels.in",
+        permanent: false,
       },
       {
-        source: "/rooms/sea-view",
-        destination: "/nivaara/rooms/luxury-palms-room",
-        permanent: true,
+        source: "/samraya/:path*",
+        destination: "https://samraya.ghdhotels.in/:path*",
+        permanent: false,
       },
+      {
+        source: "/celestra",
+        destination: "https://celestra.ghdhotels.in",
+        permanent: false,
+      },
+      {
+        source: "/celestra/:path*",
+        destination: "https://celestra.ghdhotels.in/:path*",
+        permanent: false,
+      },
+      // Legacy property paths → Nivaãra subdomain
       {
         source: "/rooms",
-        destination: "/nivaara/rooms",
-        permanent: true,
+        destination: "https://nivaara.ghdhotels.in/rooms",
+        permanent: false,
       },
       {
         source: "/rooms/:slug",
-        destination: "/nivaara/rooms/:slug",
-        permanent: true,
+        destination: "https://nivaara.ghdhotels.in/rooms/:slug",
+        permanent: false,
       },
       {
         source: "/gallery",
-        destination: "/nivaara/gallery",
-        permanent: true,
+        destination: "https://nivaara.ghdhotels.in/gallery",
+        permanent: false,
       },
       {
         source: "/faqs",
-        destination: "/nivaara/faqs",
-        permanent: true,
+        destination: "https://nivaara.ghdhotels.in/faqs",
+        permanent: false,
       },
       {
         source: "/city-attractions",
-        destination: "/nivaara/city-attractions",
-        permanent: true,
+        destination: "https://nivaara.ghdhotels.in/city-attractions",
+        permanent: false,
       },
       {
         source: "/city-attractions/:slug",
-        destination: "/nivaara/city-attractions/:slug",
-        permanent: true,
+        destination: "https://nivaara.ghdhotels.in/city-attractions/:slug",
+        permanent: false,
       },
       {
         source: "/booking",
-        destination: "/nivaara/booking",
-        permanent: true,
+        destination: "https://nivaara.ghdhotels.in/booking",
+        permanent: false,
       },
       {
         source: "/booking/:path*",
-        destination: "/nivaara/booking/:path*",
-        permanent: true,
-      },
-      // SEO room slug renames (via nested paths)
-      {
-        source: "/nivaara/rooms/nivaara-room",
-        destination: "/nivaara/rooms/luxury-studio",
-        permanent: true,
+        destination: "https://nivaara.ghdhotels.in/booking/:path*",
+        permanent: false,
       },
       {
-        source: "/nivaara/rooms/mountain-view",
-        destination: "/nivaara/rooms/luxury-valley-room",
-        permanent: true,
+        source: "/experiences",
+        destination: "https://nivaara.ghdhotels.in/city-attractions",
+        permanent: false,
       },
       {
-        source: "/nivaara/rooms/sea-view",
-        destination: "/nivaara/rooms/luxury-palms-room",
-        permanent: true,
-      },
-      // Coming-soon Celéstra placeholder
-      {
-        source: "/celestra",
-        destination: "/brands",
+        source: "/experiences/:slug",
+        destination: "https://nivaara.ghdhotels.in/city-attractions/:slug",
         permanent: false,
       },
     ];
   },
   images: {
-    // Prefer modern formats from the optimizer (AVIF then WebP).
     formats: ["image/avif", "image/webp"],
-    // Cache optimized images aggressively at the CDN/edge.
     minimumCacheTTL: 60 * 60 * 24 * 30,
-    // Match common breakpoints used across the site.
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    // Keep visually high quality when Next re-encodes.
     qualities: [75, 85, 92, 100],
     remotePatterns: [
       {

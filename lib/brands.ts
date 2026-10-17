@@ -1,7 +1,15 @@
 /**
  * Public GHD Hotels brand registry.
  * Add future brands here — set `public: true` only when ready to launch.
+ *
+ * Brand property sites live on separate domains / repos (no shared routing).
  */
+
+export const BRAND_SITES = {
+  samraya: "https://samraya.ghdhotels.in",
+  celestra: "https://celestra.ghdhotels.in",
+  nivaara: "https://nivaara.ghdhotels.in",
+} as const;
 
 export type BrandStatus = "live" | "coming-soon";
 
@@ -49,8 +57,8 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
       area: "Dodamarg, Maharashtra",
       detail: "Coming Soon",
     },
-    route: "/samraya",
-    exploreHref: "/samraya",
+    route: BRAND_SITES.samraya,
+    exploreHref: BRAND_SITES.samraya,
     image: "/images/brands/samraya-entrance.webp",
     cardImage: "/images/brands/samraya-entrance.webp",
     imageAlt: "Entrance of Samrāya by GHD Hotels — coming soon",
@@ -73,7 +81,8 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
       area: "Dodamarg, Maharashtra",
       detail: "Coming Soon",
     },
-    route: "/brands",
+    route: BRAND_SITES.celestra,
+    exploreHref: BRAND_SITES.celestra,
     image: "/images/brands/celestra-luxury-hotel-entrance.webp",
     cardImage: "/images/brands/celestra-luxury-hotel-entrance.webp",
     imageAlt: "Entrance of Celéstra luxury hotel by GHD Hotels in Dodamarg",
@@ -96,9 +105,9 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
       area: "Nerul, North Goa",
       detail: "Near Coco Beach",
     },
-    route: "/nivaara",
-    exploreHref: "/nivaara",
-    bookHref: "/nivaara",
+    route: BRAND_SITES.nivaara,
+    exploreHref: BRAND_SITES.nivaara,
+    bookHref: BRAND_SITES.nivaara,
     image: "/images/nivaara/nivaara-full-building-view.webp",
     cardImage: "/images/brands/nivaara-reception.webp",
     imageAlt: "Reception at Nivaãra by GHD Hotels in Nerul, North Goa",

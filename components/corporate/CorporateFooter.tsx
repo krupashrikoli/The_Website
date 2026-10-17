@@ -165,9 +165,11 @@ export function CorporateFooter({ className }: { className?: string }) {
               className="flex items-center gap-3 sm:gap-4 md:gap-5"
               aria-label="GHD Hotels brands"
             >
-              <div
-                className="h-9 w-auto shrink-0 opacity-65 sm:h-11 md:h-12"
+              <a
+                href="https://samraya.ghdhotels.in"
+                className="h-9 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-11 md:h-12"
                 aria-label="Samrāya by GHD Hotels"
+                rel="noopener noreferrer"
               >
                 <Image
                   src={SAMRAYA_LOGO}
@@ -177,11 +179,13 @@ export function CorporateFooter({ className }: { className?: string }) {
                   className="h-full w-auto object-contain object-center"
                   sizes="(max-width: 640px) 56px, 72px"
                 />
-              </div>
+              </a>
 
-              <div
-                className="h-7 w-auto shrink-0 opacity-65 sm:h-8 md:h-9"
+              <a
+                href="https://celestra.ghdhotels.in"
+                className="h-7 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-8 md:h-9"
                 aria-label="Celéstra by GHD Hotels"
+                rel="noopener noreferrer"
               >
                 <Image
                   src={CELESTRA_LOGO}
@@ -191,12 +195,13 @@ export function CorporateFooter({ className }: { className?: string }) {
                   className="h-full w-auto object-contain object-center"
                   sizes="(max-width: 640px) 100px, 140px"
                 />
-              </div>
+              </a>
 
-              <Link
-                href="/nivaara"
-                className="h-9 w-auto shrink-0 opacity-65 transition-opacity duration-300 hover:opacity-90 sm:h-11 md:h-12"
+              <a
+                href="https://nivaara.ghdhotels.in"
+                className="h-9 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-11 md:h-12"
                 aria-label="Nivaãra by GHD Hotels"
+                rel="noopener noreferrer"
               >
                 <Image
                   src={NIVAARA_LOGO}
@@ -206,7 +211,7 @@ export function CorporateFooter({ className }: { className?: string }) {
                   className="h-full w-auto object-contain object-center"
                   sizes="(max-width: 640px) 56px, 72px"
                 />
-              </Link>
+              </a>
             </div>
           </div>
         </div>

@@ -2,11 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { SoftReveal } from "@/components/SoftReveal";
 import { getPublicBrands, type Brand } from "@/lib/brands";
 import { BRAND_SHOWCASE, BRANDS_SECTION } from "@/lib/corporate-content";
 import { cn } from "@/lib/utils";
-import { FadeInSection, GoldLink, SectionHeading } from "./CorporateUi";
+import { FadeInSection, SectionHeading } from "./CorporateUi";
+
+function isExternalHref(href: string) {
+  return /^https?:\/\//i.test(href);
+}
 
 function BrandRow({
   brand,
@@ -23,11 +26,7 @@ function BrandRow({
   const imageSrc = showcase.image;
   const imageAlt = showcase.imageAlt;
   const cta = "cta" in showcase ? showcase.cta : null;
-  const isComingSoon = brand.status === "coming-soon";
-  const cardHref =
-    !isComingSoon && (brand.exploreHref || brand.route)
-      ? brand.exploreHref || brand.route
-      : null;
+  const cardHref = brand.exploreHref || brand.route || cta?.href || null;
 
   const locationLine = brand.location
     ? [brand.location.area, brand.location.detail].filter(Boolean).join(" · ")
@@ -36,10 +35,10 @@ function BrandRow({
   const textBlock = (
     <div
       className={cn(
-        "flex min-w-0 flex-col justify-center",
+        "flex min-w-0 flex-col justify-center px-5 py-8 sm:px-8 sm:py-10 md:py-0 lg:px-12",
         imageOnRight
-          ? "order-1 pl-4 pr-3 sm:pl-6 sm:pr-8 md:pr-12 lg:pl-10 lg:pr-16"
-          : "order-2 pl-3 pr-4 sm:pl-8 sm:pr-6 md:pl-12 lg:pl-16 lg:pr-10",
+          ? "md:order-1 md:pl-6 md:pr-10 lg:pl-10 lg:pr-16"
+          : "md:order-2 md:pl-10 md:pr-6 lg:pl-16 lg:pr-10",
       )}
     >
       <h3 className="font-heading text-2xl font-normal text-[#2D2D2D] sm:text-3xl md:text-4xl lg:text-[2.75rem]">
@@ -56,36 +55,16 @@ function BrandRow({
         </p>
       ) : null}
 
-      <div className="mt-3 max-w-md space-y-3 sm:mt-4 sm:space-y-3.5">
-        {brand.descriptionParagraphs.map((paragraph) => (
-          <p
-            key={paragraph.slice(0, 48)}
-            className="font-body text-xs font-light leading-relaxed text-[#6F6A62] sm:text-sm"
-          >
-            {paragraph}
-          </p>
-        ))}
-      </div>
-
       <p className="mt-4 font-body text-[0.65rem] font-medium uppercase tracking-[0.1em] text-[#2D2D2D]/75 sm:mt-5 sm:text-[0.7rem] sm:tracking-[0.12em]">
         {brand.positioning}
       </p>
 
-      {cta ? (
+      {cta && cardHref ? (
         <div className="mt-5 sm:mt-7">
-          {cardHref ? (
-            <span className="inline-flex items-center gap-2 border border-[#C6A86B] bg-[#C6A86B] px-4 py-2.5 font-body text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#2D2D2D] transition-colors group-hover:bg-[#b8975a] sm:px-5 sm:py-3 sm:text-[0.72rem] sm:tracking-[0.16em]">
-              {cta.label}
-              <span
-                aria-hidden
-                className="transition-transform duration-300 group-hover:translate-x-0.5"
-              >
-                →
-              </span>
-            </span>
-          ) : (
-            <GoldLink href={cta.href}>{cta.label}</GoldLink>
-          )}
+          <span className="inline-flex items-center gap-2 border border-[#C6A86B] bg-[#C6A86B] px-4 py-2.5 font-body text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-[#2D2D2D] transition-colors [@media(hover:hover)]:group-hover:bg-[#b8975a] sm:px-5 sm:py-3 sm:text-[0.72rem] sm:tracking-[0.16em]">
+            {cta.label}
+            <span aria-hidden>→</span>
+          </span>
         </div>
       ) : null}
     </div>
@@ -94,8 +73,8 @@ function BrandRow({
   const imageBlock = (
     <div
       className={cn(
-        "relative min-h-44 overflow-hidden bg-[#E6DDCF] sm:min-h-64 md:min-h-[32rem] lg:min-h-[40rem]",
-        imageOnRight ? "order-2" : "order-1",
+        "relative min-h-56 overflow-hidden bg-[#E6DDCF] sm:min-h-72 md:min-h-[32rem] lg:min-h-[40rem]",
+        imageOnRight ? "md:order-2" : "md:order-1",
       )}
     >
       <Image
@@ -104,30 +83,45 @@ function BrandRow({
         fill
         priority={priority}
         quality={85}
-        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
-        sizes="68vw"
+        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:group-hover:scale-[1.02]"
+        sizes="(max-width: 768px) 100vw, 68vw"
       />
     </div>
   );
 
   const rowClass = cn(
-    "grid w-full items-stretch",
-    imageOnRight ? "grid-cols-[1fr_68%]" : "grid-cols-[68%_1fr]",
+    "grid w-full items-stretch grid-cols-1",
+    imageOnRight ? "md:grid-cols-[1fr_68%]" : "md:grid-cols-[68%_1fr]",
   );
 
   const rowInner = (
     <>
-      {textBlock}
       {imageBlock}
+      {textBlock}
     </>
   );
 
   if (cardHref) {
+    const linkClass = cn("group block touch-manipulation", rowClass);
+    if (isExternalHref(cardHref)) {
+      return (
+        <a
+          href={cardHref}
+          aria-label={`Explore ${brand.name}`}
+          className={linkClass}
+          rel="noopener noreferrer"
+        >
+          {rowInner}
+        </a>
+      );
+    }
+
     return (
       <Link
         href={cardHref}
+        prefetch
         aria-label={`Explore ${brand.name}`}
-        className={cn("group block", rowClass)}
+        className={linkClass}
       >
         {rowInner}
       </Link>
@@ -161,13 +155,12 @@ export function BrandShowcase({
         )}
       >
         {brands.map((brand, index) => (
-          <SoftReveal key={brand.id} index={index}>
-            <BrandRow
-              brand={brand}
-              imageOnRight={index % 2 === 1}
-              priority={index === 0}
-            />
-          </SoftReveal>
+          <BrandRow
+            key={brand.id}
+            brand={brand}
+            imageOnRight={index % 2 === 1}
+            priority={index === 0}
+          />
         ))}
       </div>
     </section>

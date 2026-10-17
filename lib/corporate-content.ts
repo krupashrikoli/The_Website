@@ -46,15 +46,17 @@ export const BRAND_SHOWCASE = {
   nivaara: {
     image: "/images/brands/nivaara-reception.webp",
     imageAlt: "Reception at Nivaãra by GHD Hotels",
-    cta: { label: "Explore More", href: "/nivaara" },
+    cta: { label: "Explore More", href: "https://nivaara.ghdhotels.in" },
   },
   samraya: {
     image: "/images/brands/samraya-entrance.webp",
     imageAlt: "Samrāya by GHD Hotels — coming soon",
+    cta: { label: "Explore More", href: "https://samraya.ghdhotels.in" },
   },
   celestra: {
     image: "/images/brands/celestra-luxury-hotel-entrance.webp",
     imageAlt: "Entrance of Celéstra luxury hotel by GHD Hotels in Dodamarg",
+    cta: { label: "Explore More", href: "https://celestra.ghdhotels.in" },
   },
 } as const;
 
@@ -158,7 +160,7 @@ export const DESTINATIONS = {
       location: "Nerul, North Goa",
       detail: "Near Coco Beach",
       image: "/images/nivaara/nivaara-beach-poster.webp",
-      href: "/nivaara",
+      href: "https://nivaara.ghdhotels.in",
       status: "live" as const,
     },
   ],
@@ -200,7 +202,7 @@ export const CINEMATIC_STATEMENT = {
 export const FINAL_BOOKING_CTA = {
   headline: "Your next stay starts here.",
   subheading: "Discover Nivaãra in North Goa.",
-  cta: { label: "Book Nivaãra", href: "/nivaara" },
+  cta: { label: "Book Nivaãra", href: "https://nivaara.ghdhotels.in" },
 } as const;
 
 export const CORPORATE_FOOTER = {
