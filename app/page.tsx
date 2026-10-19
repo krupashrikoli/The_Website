@@ -3,15 +3,11 @@ import { Header } from "@/components/Header";
 import { CorporateFooter } from "@/components/corporate/CorporateFooter";
 import { CorporateHero } from "@/components/corporate/CorporateHero";
 import { CorporateIntro } from "@/components/corporate/CorporateIntro";
-import { CorporateBeachBanner } from "@/components/corporate/CorporateBeachBanner";
 import { BrandShowcase } from "@/components/corporate/BrandShowcase";
 import {
   CultureSection,
   WhatWeBelieveSection,
 } from "@/components/corporate/AboutPhilosophy";
-import {
-  GetInTouchSection,
-} from "@/components/corporate/LeadershipDestinations";
 import {
   CinematicSection,
   FinalBookingCta,
@@ -35,11 +31,9 @@ export default function HomePage() {
       <main className="pt-0">
         <CorporateHero />
         <CorporateIntro />
-        <CorporateBeachBanner />
         <BrandShowcase />
         <CultureSection />
         <WhatWeBelieveSection />
-        <GetInTouchSection className="bg-white" />
         <CinematicSection />
         <FinalBookingCta />
       </main>

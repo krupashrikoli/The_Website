@@ -108,7 +108,7 @@ export const PUBLIC_BRANDS: readonly Brand[] = [
     route: BRAND_SITES.nivaara,
     exploreHref: BRAND_SITES.nivaara,
     bookHref: BRAND_SITES.nivaara,
-    image: "/images/nivaara/nivaara-full-building-view.webp",
+    image: "/images/brands/nivaara-reception.webp",
     cardImage: "/images/brands/nivaara-reception.webp",
     imageAlt: "Reception at Nivaãra by GHD Hotels in Nerul, North Goa",
     highlights: ["SEA VIEW", "ROOFTOP POOL", "NORTH GOA"],

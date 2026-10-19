@@ -77,7 +77,10 @@ export function CorporateFooter({ className }: { className?: string }) {
   return (
     <footer
       id="contact"
-      className={cn("site-footer relative overflow-hidden py-16 sm:py-20", className)}
+      className={cn(
+        "site-footer relative overflow-hidden py-12 sm:py-16 md:py-20",
+        className,
+      )}
     >
       <div
         className="pointer-events-none absolute inset-0 flex items-center justify-center"
@@ -93,9 +96,9 @@ export function CorporateFooter({ className }: { className?: string }) {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center px-6 text-center">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-center px-4 text-center sm:px-6 md:px-8">
         <nav className="w-full" aria-label="Footer navigation">
-          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:gap-x-7 md:gap-x-9">
+          <ul className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-x-4 gap-y-2.5 sm:gap-x-6 sm:gap-y-3 md:gap-x-9">
             {CORPORATE_NAV.map((item) => (
               <li key={item.label}>
                 <Link
@@ -109,8 +112,8 @@ export function CorporateFooter({ className }: { className?: string }) {
           </ul>
         </nav>
 
-        <nav className="mt-5 w-full" aria-label="Legal">
-          <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:gap-x-5">
+        <nav className="mt-4 w-full sm:mt-5" aria-label="Legal">
+          <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:gap-x-5">
             <li>
               <Link
                 href="/privacy"
@@ -119,7 +122,7 @@ export function CorporateFooter({ className }: { className?: string }) {
                 Privacy Policy
               </Link>
             </li>
-            <li aria-hidden className="text-charcoal/40">
+            <li aria-hidden className="hidden text-charcoal/40 sm:block">
               |
             </li>
             <li>
@@ -133,16 +136,16 @@ export function CorporateFooter({ className }: { className?: string }) {
           </ul>
         </nav>
 
-        <div className="relative mt-6 flex max-w-full items-center justify-center sm:mt-8">
+        <div className="relative mt-6 w-full max-w-full sm:mt-8">
           <span
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[170%] w-[120%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(250,247,240,0.95)_0%,rgba(250,247,240,0.72)_45%,transparent_72%)]"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[170%] w-[min(100%,42rem)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(250,247,240,0.95)_0%,rgba(250,247,240,0.72)_45%,transparent_72%)]"
             aria-hidden
           />
 
-          <div className="relative z-10 flex items-center justify-center gap-6 sm:gap-10 md:gap-14">
+          <div className="relative z-10 flex w-full flex-col items-center justify-center gap-5 sm:gap-6 md:flex-row md:gap-10 lg:gap-14">
             <Link
               href="/"
-              className="w-[min(40vw,9.5rem)] shrink-0 sm:w-[11.5rem] md:w-[13.5rem]"
+              className="w-[min(52vw,10rem)] shrink-0 sm:w-[11.5rem] md:w-[13.5rem]"
               aria-label="GHD Hotels home"
             >
               <Image
@@ -151,23 +154,23 @@ export function CorporateFooter({ className }: { className?: string }) {
                 width={1160}
                 height={420}
                 className="h-auto w-full object-contain object-center drop-shadow-[0_6px_18px_rgba(84,49,25,0.22)]"
-                sizes="(max-width: 640px) 40vw, 216px"
+                sizes="(max-width: 640px) 52vw, 216px"
                 priority
               />
             </Link>
 
             <span
-              className="hidden h-10 w-px shrink-0 bg-[#C6A86B]/35 sm:block sm:h-12 md:h-14"
+              className="h-px w-16 shrink-0 bg-[#C6A86B]/35 md:h-12 md:w-px lg:h-14"
               aria-hidden
             />
 
             <div
-              className="flex items-center gap-3 sm:gap-4 md:gap-5"
+              className="flex w-full max-w-md flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:max-w-none sm:gap-x-5 sm:gap-y-4 md:w-auto md:gap-x-5"
               aria-label="GHD Hotels brands"
             >
               <a
                 href="https://samraya.ghdhotels.in"
-                className="h-9 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-11 md:h-12"
+                className="h-8 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-11 md:h-12"
                 aria-label="Samrāya by GHD Hotels"
                 rel="noopener noreferrer"
               >
@@ -177,13 +180,13 @@ export function CorporateFooter({ className }: { className?: string }) {
                   width={1794}
                   height={1324}
                   className="h-full w-auto object-contain object-center"
-                  sizes="(max-width: 640px) 56px, 72px"
+                  sizes="(max-width: 640px) 48px, 72px"
                 />
               </a>
 
               <a
                 href="https://celestra.ghdhotels.in"
-                className="h-7 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-8 md:h-9"
+                className="h-6 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-8 md:h-9"
                 aria-label="Celéstra by GHD Hotels"
                 rel="noopener noreferrer"
               >
@@ -193,13 +196,13 @@ export function CorporateFooter({ className }: { className?: string }) {
                   width={932}
                   height={255}
                   className="h-full w-auto object-contain object-center"
-                  sizes="(max-width: 640px) 100px, 140px"
+                  sizes="(max-width: 640px) 88px, 140px"
                 />
               </a>
 
               <a
                 href="https://nivaara.ghdhotels.in"
-                className="h-9 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-11 md:h-12"
+                className="h-8 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-11 md:h-12"
                 aria-label="Nivaãra by GHD Hotels"
                 rel="noopener noreferrer"
               >
@@ -209,14 +212,14 @@ export function CorporateFooter({ className }: { className?: string }) {
                   width={736}
                   height={510}
                   className="h-full w-auto object-contain object-center"
-                  sizes="(max-width: 640px) 56px, 72px"
+                  sizes="(max-width: 640px) 48px, 72px"
                 />
               </a>
             </div>
           </div>
         </div>
 
-        <ul className="mt-5 flex items-center justify-center gap-5 sm:mt-6 sm:gap-6">
+        <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 sm:mt-6 sm:gap-x-6">
           {CORPORATE_FOOTER.social.map((social) => {
             const Icon = SOCIAL_ICONS[social.icon];
 
@@ -236,7 +239,7 @@ export function CorporateFooter({ className }: { className?: string }) {
           })}
         </ul>
 
-        <div className="mt-8 w-full border-t border-charcoal/15 pt-6 sm:mt-10 sm:pt-7">
+        <div className="mt-7 w-full border-t border-charcoal/15 pt-5 sm:mt-10 sm:pt-7">
           <p className="font-body text-[8px] font-normal tracking-[0.03em] text-charcoal/75 sm:text-[9px]">
             © 2026 GHD Hotels. All Rights Reserved.
           </p>

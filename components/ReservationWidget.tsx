@@ -227,7 +227,7 @@ export function ReservationBar({
   propertyOptions = defaultPropertyOptions,
   propertyPlaceholder = "Search Hotels",
   resolvePropertyId = (value) => value,
-  bookingRedirect = "internal",
+  bookingRedirect = "axisrooms",
   variant = "hero",
   fields = "full",
   submitLabel = "Search",

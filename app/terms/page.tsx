@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
 import { Header } from "@/components/Header";
 import { TermsAndConditionsContent } from "@/components/TermsAndConditionsContent";
-import { Footer } from "@/components/Footer";
+import { CorporateFooter } from "@/components/corporate/CorporateFooter";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | Nivaãra by GHD Hotels",
+  title: "Terms & Conditions | GHD Hotels",
   description:
-    "Read the Nivaãra by GHD Hotels booking conditions for our Nerul, Goa property — check-in, cancellation, payment, and guest policies.",
+    "Read the GHD Hotels booking conditions — check-in, cancellation, payment, and guest policies.",
 };
 
 export default function TermsPage() {
   return (
-    <>
+    <div className="corporate-site bg-white text-[#2D2D2D]">
       <Header />
       <main>
         <TermsAndConditionsContent />
       </main>
-      <Footer />
-    </>
+      <CorporateFooter />
+    </div>
   );
 }

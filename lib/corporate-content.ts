@@ -24,11 +24,16 @@ export const CORPORATE_HERO = {
   video: "/videos/corporate/ghd-hotels-hero.mp4",
   poster: "/images/corporate/ghd-hotels-hero-poster.webp",
   imageAlt: "GHD Hotels hospitality",
-} as const;
-
-export const CORPORATE_BEACH_BANNER = {
-  image: "/images/corporate/goa-beach-aerial.webp",
-  imageAlt: "Sunset over the Goa coast with palm trees",
+  rotatingWords: [
+    "FEEL.",
+    "STAY.",
+    "EXPLORE.",
+    "DISCOVER.",
+    "CELEBRATE.",
+    "MAKE MEMORIES.",
+    "BELONG, WITH GHD HOTELS.",
+  ],
+  wordIntervalMs: 3000,
 } as const;
 
 export const CORPORATE_INTRO = {
@@ -159,36 +164,9 @@ export const DESTINATIONS = {
       brandName: "Nivaãra",
       location: "Nerul, North Goa",
       detail: "Near Coco Beach",
-      image: "/images/nivaara/nivaara-beach-poster.webp",
+      image: "/images/brands/nivaara-reception.webp",
       href: "https://nivaara.ghdhotels.in",
       status: "live" as const,
-    },
-  ],
-} as const;
-
-export const GHD_EXPERIENCE = {
-  eyebrow: "The GHD Experience",
-  headline: "More than a stay.",
-  steps: [
-    {
-      title: "Arrive",
-      description: "Feel welcomed from the moment you arrive.",
-      image: "/images/nivaara/nivaara-reception.webp",
-    },
-    {
-      title: "Unwind",
-      description: "Spaces designed to help you slow down.",
-      image: "/images/nivaara/nivaara-room-2.webp",
-    },
-    {
-      title: "Discover",
-      description: "Experience the destination beyond your room.",
-      image: "/images/experiences/beaches/coco-beach.webp",
-    },
-    {
-      title: "Return",
-      description: "Leave with a reason to come back.",
-      image: "/images/nivaara/nivaara-terrace-1.webp",
     },
   ],
 } as const;

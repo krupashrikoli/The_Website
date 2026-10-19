@@ -2,13 +2,15 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ReservationBar } from "@/components/ReservationWidget";
+import { BRAND_SITES } from "@/lib/brands";
 import { CORPORATE_HERO } from "@/lib/corporate-content";
 import { CORPORATE_SEARCH_DESTINATIONS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { FadeInSection } from "./CorporateUi";
 
+/** Cover the full hero frame on every screen — no letterboxing / black bars */
 const heroMediaClass =
-  "absolute top-1/2 left-1/2 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center";
+  "absolute inset-0 h-full w-full object-cover object-center";
 
 const corporatePropertyOptions = CORPORATE_SEARCH_DESTINATIONS.map((destination) => ({
   value: destination.value,
@@ -22,12 +24,40 @@ function resolveCorporatePropertyId(value: string) {
   );
 }
 
+function visitBrandSite(propertyId: string) {
+  const href =
+    BRAND_SITES[propertyId as keyof typeof BRAND_SITES] ?? BRAND_SITES.nivaara;
+  window.location.assign(href);
+}
+
+function HeroRotatingWords() {
+  const words = CORPORATE_HERO.rotatingWords;
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setIndex((current) => (current + 1) % words.length);
+    }, CORPORATE_HERO.wordIntervalMs);
+
+    return () => window.clearInterval(timer);
+  }, [words.length]);
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-6">
+      <div className="relative flex min-h-[5.5rem] w-full max-w-5xl items-center justify-center sm:min-h-[6.5rem] md:min-h-[7.5rem]">
+        <p className="text-center font-hero text-[clamp(2.5rem,8vw,6.5rem)] font-semibold uppercase leading-[1.05] tracking-[0.1em] text-white drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:tracking-[0.14em]">
+          {words[index]}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function CorporateHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
-    // Preload poster only — avoid tying up the network with the full hero video.
     const link = document.createElement("link");
     link.rel = "preload";
     link.as = "image";
@@ -67,7 +97,7 @@ export function CorporateHero() {
 
   return (
     <div className="relative z-10">
-      <section className="relative min-h-[88vh] overflow-hidden bg-[#2D2D2D]">
+      <section className="relative h-[100svh] min-h-[32rem] overflow-hidden bg-[#2D2D2D] sm:min-h-[36rem]">
         <div className="absolute inset-0 overflow-hidden" aria-hidden>
           <img
             src={CORPORATE_HERO.poster}
@@ -97,7 +127,10 @@ export function CorporateHero() {
             )}
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/85 via-[#2D2D2D]/45 to-[#2D2D2D]/25" />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2D2D2D]/80 via-[#2D2D2D]/30 to-[#2D2D2D]/35" />
+
+        <HeroRotatingWords />
       </section>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 translate-y-1/2 px-4 sm:px-6 lg:px-10">
@@ -110,6 +143,7 @@ export function CorporateHero() {
             propertyOptions={corporatePropertyOptions}
             propertyPlaceholder="Hotel or Destination"
             resolvePropertyId={resolveCorporatePropertyId}
+            onVisit={visitBrandSite}
           />
         </FadeInSection>
       </div>

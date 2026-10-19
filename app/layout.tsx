@@ -4,12 +4,12 @@ import {
   Archivo,
   DM_Sans,
   Inter,
+  Montserrat,
   Playfair_Display,
 } from "next/font/google";
 import Script from "next/script";
 import { ContactModalProvider } from "@/components/contact/ContactModalContext";
 import { NIVAARA_FAVICON, SEO_KEYWORDS } from "@/lib/constants";
-import { StickyBookingButton } from "@/components/StickyBookingButton";
 import { FaviconSwitcher } from "@/components/FaviconSwitcher";
 import { PageMediaGate } from "@/components/PageMediaGate";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -52,6 +52,13 @@ const archivoExpanded = Archivo({
   display: "swap",
 });
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
+
 export const viewport = {
   width: "device-width",
   initialScale: 1,
@@ -85,7 +92,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${forum.variable} ${playfair.variable} ${inter.variable} ${archivoExpanded.variable}`}
+      className={`${dmSans.variable} ${forum.variable} ${playfair.variable} ${inter.variable} ${archivoExpanded.variable} ${montserrat.variable}`}
     >
       <head>
         {/* Google tag (gtag.js) */}
@@ -107,7 +114,6 @@ export default function RootLayout({
           <FaviconSwitcher />
           <ScrollToTop />
           <PageMediaGate>{children}</PageMediaGate>
-          <StickyBookingButton />
         </ContactModalProvider>
       </body>
     </html>

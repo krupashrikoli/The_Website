@@ -137,7 +137,7 @@ function NavLinks({
           <li key={item.href} className="shrink-0">
             <Link
               href={item.href}
-              className={navLinkClass(scrolled, item.label !== "FAQs")}
+              className={navLinkClass(scrolled)}
               style={{ color: scrolled ? "#111111" : undefined }}
             >
               {item.label}
@@ -224,7 +224,7 @@ function MobileNavMenu({
             <Link
               href={item.href}
               onClick={onClose}
-              className={cn(mobileNavLinkClass, item.label !== "FAQs" && "uppercase")}
+              className={cn(mobileNavLinkClass, "uppercase")}
             >
               {item.label}
             </Link>
