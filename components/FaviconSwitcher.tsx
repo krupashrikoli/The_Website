@@ -25,7 +25,7 @@ export function FaviconSwitcher() {
 
   useEffect(() => {
     // Cache-bust so browsers pick up logo replacements at the same path.
-    setFavicon(`${GHD_FAVICON}?v=3`);
+    setFavicon(`${GHD_FAVICON}?v=4`);
   }, [pathname]);
 
   return null;

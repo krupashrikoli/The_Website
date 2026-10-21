@@ -147,5 +147,5 @@ export const SAMRAYA_LOGO = "/logos/samraya-by-ghd-hotels-logo.webp";
 export const GHD_HOTELS_MAIN_LOGO = "/logos/ghd-hotels-main-logo.webp";
 /** Primary GHD Hotels logo for header, footer, and on-page use. */
 export const GHD_LOGO = GHD_HOTELS_MAIN_LOGO;
-/** Tab / favicon — GHD Hotels mark only. */
-export const GHD_FAVICON = GHD_HOTELS_MAIN_LOGO;
+/** Tab / favicon — GHD Hotels text mark only. */
+export const GHD_FAVICON = "/logos/ghd-hotels-text-logo.webp";
