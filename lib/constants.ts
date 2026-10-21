@@ -143,9 +143,9 @@ export const CORPORATE_OFFICE = {
 export const NIVAARA_LOGO = "/logos/nivaara-by-ghd-hotels-logo.webp";
 export const CELESTRA_LOGO = "/logos/celestra-by-ghd-hotels-logo.webp";
 export const SAMRAYA_LOGO = "/logos/samraya-by-ghd-hotels-logo.webp";
-/** Tab / favicon — same mark as header, page, and footer. */
-export const NIVAARA_FAVICON = NIVAARA_LOGO;
 
 export const GHD_HOTELS_MAIN_LOGO = "/logos/ghd-hotels-main-logo.webp";
 /** Primary GHD Hotels logo for header, footer, and on-page use. */
 export const GHD_LOGO = GHD_HOTELS_MAIN_LOGO;
+/** Tab / favicon — GHD Hotels mark only. */
+export const GHD_FAVICON = GHD_HOTELS_MAIN_LOGO;

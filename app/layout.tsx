@@ -9,7 +9,7 @@ import {
 } from "next/font/google";
 import Script from "next/script";
 import { ContactModalProvider } from "@/components/contact/ContactModalContext";
-import { NIVAARA_FAVICON, SEO_KEYWORDS } from "@/lib/constants";
+import { GHD_FAVICON, SEO_KEYWORDS } from "@/lib/constants";
 import { FaviconSwitcher } from "@/components/FaviconSwitcher";
 import { PageMediaGate } from "@/components/PageMediaGate";
 import { ScrollToTop } from "@/components/ScrollToTop";
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: { url: NIVAARA_FAVICON, type: "image/webp" },
+    icon: { url: GHD_FAVICON, type: "image/webp" },
   },
 };
 

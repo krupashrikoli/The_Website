@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { NIVAARA_FAVICON } from "@/lib/constants";
+import { GHD_FAVICON } from "@/lib/constants";
 
 function setFavicon(href: string) {
   const head = document.head;
@@ -19,13 +19,13 @@ function setFavicon(href: string) {
   head.appendChild(link);
 }
 
-/** Keeps the tab icon on the current Nivaãra mark across client navigations. */
+/** Keeps the tab icon on the GHD Hotels mark across client navigations. */
 export function FaviconSwitcher() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Cache-bust so browsers pick up logo replacements at the same brand path.
-    setFavicon(`${NIVAARA_FAVICON}?v=2`);
+    // Cache-bust so browsers pick up logo replacements at the same path.
+    setFavicon(`${GHD_FAVICON}?v=3`);
   }, [pathname]);
 
   return null;
