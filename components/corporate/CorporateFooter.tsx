@@ -170,17 +170,17 @@ export function CorporateFooter({ className }: { className?: string }) {
             >
               <a
                 href="https://samraya.ghdhotels.in"
-                className="h-8 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-11 md:h-12"
+                className="h-6 w-auto shrink-0 opacity-65 transition-opacity duration-300 touch-manipulation hover:opacity-90 sm:h-8 md:h-9"
                 aria-label="Samrāya by GHD Hotels"
                 rel="noopener noreferrer"
               >
                 <Image
                   src={SAMRAYA_LOGO}
                   alt="Samrāya by GHD Hotels"
-                  width={1794}
-                  height={1324}
+                  width={3085}
+                  height={565}
                   className="h-full w-auto object-contain object-center"
-                  sizes="(max-width: 640px) 48px, 72px"
+                  sizes="(max-width: 640px) 140px, 220px"
                 />
               </a>
 
